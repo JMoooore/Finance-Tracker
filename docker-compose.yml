@@ -1,8 +1,11 @@
 services:
   postgres:
+    networks:
+      - default
     image: postgres:14.2-alpine
     environment:
       - POSTGRES_PASSWORD=''
+      - POSTGRES_DB='sdc'
     ports:
       - 5432:5432
     container_name: postgres
@@ -15,6 +18,8 @@ services:
       - 3000:3000
     container_name: sdc-frontend
   restapi:
+    networks:
+      - default
     image: sdc-restapi
     build: ./restapi
     volumes:
@@ -22,3 +27,5 @@ services:
     ports:
       -  3001:3001
     container_name: sdc-restapi
+    environment:
+      - DATABASE_URL='postgres://postgres@postgres:5432/sdc?sslmode=disabled'

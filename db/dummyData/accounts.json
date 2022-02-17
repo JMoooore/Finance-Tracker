@@ -1,8 +1,0 @@
-[
-    {"id":1, "user_id":1, "name":"wallet", "balance":1000 },
-    {"id":5, "user_id":5, "name":"wallet", "balance":100 },
-    {"id":2, "user_id":2, "name":"wallet", "balance":2000 },
-    {"id":3, "user_id":3, "name":"wallet", "balance":3000 },
-    {"id":4, "user_id":4, "name":"wallet", "balance":500 },
-    {"id":6, "user_id":6, "name":"wallet", "balance":100000 }
-]

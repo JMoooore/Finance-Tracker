@@ -15,6 +15,5 @@ export function seed(knex) {
         {first_name:"Paul", last_name:"Devlin", email:"pd@email.com", password:"1234"},
         {first_name:"John", last_name:"Moore", email:"jm@email.com", password:"1234"}
       ]);
-
     })
 };
