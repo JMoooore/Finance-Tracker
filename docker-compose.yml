@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:14.2-alpine
+    environment:
+      - POSTGRES_PASSWORD=''
+    ports:
+      - 5432:5432
+    container_name: postgres
+  frontend:
+    image: sdc-frontend 
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+    ports:
+      - 3000:3000
+    container_name: sdc-frontend
