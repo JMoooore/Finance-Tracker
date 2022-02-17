@@ -1,0 +1,3 @@
+FROM postgres:14.2-alpine
+ENV POSTGRES_PASSWORD password
+ENV POSTGRES_DB sdc
