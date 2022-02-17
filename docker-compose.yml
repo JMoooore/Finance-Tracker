@@ -14,3 +14,11 @@ services:
     ports:
       - 3000:3000
     container_name: sdc-frontend
+  restapi:
+    image: sdc-restapi
+    build: ./restapi
+    volumes:
+      -  ./restapi:/app
+    ports:
+      -  3001:3001
+    container_name: sdc-restapi
