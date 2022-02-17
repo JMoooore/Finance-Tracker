@@ -1,0 +1,7 @@
+stages: -build
+
+format:
+  stage: build
+  script: 
+    - echo "Formatting code"
+    - npx prettier . --write
