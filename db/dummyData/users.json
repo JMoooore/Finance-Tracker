@@ -1,8 +1,44 @@
 [
-    {"id":1, "first":"Isaias", "last":"Nuno", "email":"in@email.com", "password":"1234"},
-    {"id":2, "first":"Kevin", "last":"Heleodoro", "email":"kh@email.com", "password":"1234"},
-    {"id":3, "first":"Nick", "last":"Raffaele", "email":"nr@email.com", "password":"1234"},
-    {"id":4, "first":"Fernando", "last":"Curiel", "email":"fc@email.com", "password":"1234"},
-    {"id":5, "first":"Paul", "last":"Devlin", "email":"pd@email.com", "password":"1234"},
-    {"id":6, "first":"John", "last":"Moore", "email":"jm@email.com", "password":"1234"}
+  {
+    "id": 1,
+    "first": "Isaias",
+    "last": "Nuno",
+    "email": "in@email.com",
+    "password": "1234"
+  },
+  {
+    "id": 2,
+    "first": "Kevin",
+    "last": "Heleodoro",
+    "email": "kh@email.com",
+    "password": "1234"
+  },
+  {
+    "id": 3,
+    "first": "Nick",
+    "last": "Raffaele",
+    "email": "nr@email.com",
+    "password": "1234"
+  },
+  {
+    "id": 4,
+    "first": "Fernando",
+    "last": "Curiel",
+    "email": "fc@email.com",
+    "password": "1234"
+  },
+  {
+    "id": 5,
+    "first": "Paul",
+    "last": "Devlin",
+    "email": "pd@email.com",
+    "password": "1234"
+  },
+  {
+    "id": 6,
+    "first": "John",
+    "last": "Moore",
+    "email": "jm@email.com",
+    "password": "1234"
+  }
 ]

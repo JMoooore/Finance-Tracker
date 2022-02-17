@@ -1,9 +1,9 @@
-stages: 
+stages:
   - build
 
 format:
   stage: build
   image: node:17-alpine3.14
-  script: 
+  script:
     - echo "Formatting code"
     - npx prettier . --check

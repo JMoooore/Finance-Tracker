@@ -1,7 +1,7 @@
-import connection from "./config/connection.js";
+import connection from './config/connection.js';
 
 export default {
-  client: "pg",
+  client: 'pg',
   connection: connection.object ?? connection.string,
   migrations: {
     //directory: "/migrations",
