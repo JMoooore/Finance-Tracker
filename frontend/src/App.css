@@ -1,7 +1,15 @@
 .App {
   text-align: center;
+  display: flex;
 }
-
+/* :root {
+  --white: #F5F5F5;
+  --black: #001F29; 
+  --darkBlue: #003459;
+  --blue: #007EA7;
+  --lightBlue: #00A8E8;
+} */
+/* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +43,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
