@@ -4,9 +4,9 @@ export default {
   client: "pg",
   connection: connection.object ?? connection.string,
   migrations: {
-    //directory: "/migrations",
+    directory: "./migrations",
   },
   seeds: {
-    //directory: "/seeds",
+    directory: "./seeds",
   },
 };
