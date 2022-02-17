@@ -13,7 +13,7 @@ exports.up = function(knex) {
         table.foreign("payee_id").references("payees.id");
         table.foreign("account_id").references("accounts.id");
         table.foreign("category_id").references("categories.id");
-        table.datetime("date",{useTz: false});
+        table.datetime("date",{useTz: false}).defaultTo(knex.fn.now());
         table.specificType("inflow", "money");
         table.specificType("outflow", "money");
         table.string("note");
