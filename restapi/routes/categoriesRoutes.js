@@ -1,8 +1,8 @@
 import { Router, json } from 'express';
-import db from '../config/index.js';
+// import db from '../config/index.js';
 
-const catergories = new Router();
-catergories.use(json());
+const categories = new Router();
+categories.use(json());
 
 // catergories.get("/", async (req, res) => {
 //     try {
