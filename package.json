@@ -1,23 +1,23 @@
 {
-  "name": "system-design-capstone",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/m7093/system-design-capstone.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/m7093/system-design-capstone/issues"
-  },
-  "homepage": "https://gitlab.com/m7093/system-design-capstone#readme",
-  "dependencies": {
-    "prettier": "^2.5.1"
-  }
+    "name": "system-design-capstone",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@gitlab.com/m7093/system-design-capstone.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://gitlab.com/m7093/system-design-capstone/issues"
+    },
+    "homepage": "https://gitlab.com/m7093/system-design-capstone#readme",
+    "dependencies": {
+        "prettier": "^2.5.1"
+    }
 }

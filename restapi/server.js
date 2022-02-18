@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const corsConfig = {
-  origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000',
 };
 
 app.use(cors(corsConfig));
@@ -19,9 +19,9 @@ app.use('/transactions', routes.transactions);
 app.use('/users', routes.users);
 
 app.use('/test', (req, res) => {
-res.json({ message: 'hello there' });
+    res.json({ message: 'hello there' });
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port: ${PORT}`);
+    console.log(`Server running on port: ${PORT}`);
 });
