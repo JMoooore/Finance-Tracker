@@ -3,7 +3,6 @@ import MaterialTable from 'material-table';
 import { useState, useEffect } from 'react';
 
 export default function Table() {
-    //api req to get data and set to const data
     const [data, setData] = useState([]);
 
     return (
