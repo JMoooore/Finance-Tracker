@@ -1,5 +1,5 @@
 import { Router, json } from 'express';
-import db from '../config/index.js';
+import db from '../model/connection';
 
 const users = new Router();
 users.use(json());
