@@ -7,8 +7,8 @@ userModel.getAll = async () => {
     return await users.select()
 }
 
-userModel.getOne = () => {
-
+userModel.getOne = async (id) => {
+    return await users.where('id',id)
 }
 
 export default userModel;
