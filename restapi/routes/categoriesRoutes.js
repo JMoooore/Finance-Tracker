@@ -1,5 +1,5 @@
-import { Router, json } from "express";
-import db from "../config/index.js";
+import { Router, json } from 'express';
+import db from '../config/index.js';
 
 const catergories = new Router();
 catergories.use(json());
@@ -12,6 +12,5 @@ catergories.use(json());
 //       errorHandler(err, res);
 //     }
 //   });
-
 
 export default catergories;
