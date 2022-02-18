@@ -1,6 +1,6 @@
-import knex from "knex";
-import knexfile from "../config/knexfile";
+import knex from 'knex';
+import knexfile from '../config/knexfile';
 
-const db = knex(knexfile)
+const db = knex(knexfile);
 
 export default db;
