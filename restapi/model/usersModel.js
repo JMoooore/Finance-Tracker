@@ -1,14 +1,15 @@
-import db from "./connection.js";
+import db from './connection.js';
 
-const userModel = {}
-const users = db('users')
+const userModel = {};
 
 userModel.getAll = async () => {
-    return await users.select()
-}
+    const { rows } = await db.query('SELECT * FROM users');
+    return rows
+};
 
 userModel.getOne = async (id) => {
-    return await users.where('id',id)
-}
+    const { rows } = await db.query('SELECT * FROM users WHERE id=$1', [id]);
+    return rows;
+};
 
 export default userModel;
