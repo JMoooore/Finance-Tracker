@@ -19,7 +19,7 @@ app.use('/transactions', routes.transactions);
 app.use('/users', routes.users);
 
 app.use('/test', (req, res) => {
-  res.json({ message: 'hello' });
+res.json({ message: 'hello there' });
 });
 
 app.listen(PORT, () => {
