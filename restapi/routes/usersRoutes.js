@@ -1,17 +1,12 @@
 import { Router, json } from 'express';
-import db from '../model/connection';
+import db from '../model/connection.js';
+import userController from '../controllers/userController.js';
+
 
 const users = new Router();
 users.use(json());
 
-users.get('/', async (req, res) => {
-    try {
-        const result = await db('users').select();
-        res.json(result);
-    } catch (err) {
-        errorHandler(err, res);
-    }
-});
+users.get('/', userController.getAll);
 
 users.get('/:id', async (req, res) => {
     try {

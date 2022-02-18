@@ -13,4 +13,4 @@ categories.use(json());
 //     }
 //   });
 
-export default catergories;
+export default categories;
