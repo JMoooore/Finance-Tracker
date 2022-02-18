@@ -1,15 +1,15 @@
 [
-    {"id":1,"user_id":1,"name":"Food"},
-    {"id":2,"user_id":1,"name":"Clothes"},
-    {"id":3,"user_id":2,"name":"Food"},
-    {"id":4,"user_id":2,"name":"Supplements"},
-    {"id":5,"user_id":3,"name":"School"},
-    {"id":6,"user_id":4,"name":"Bills"},
-    {"id":7,"user_id":4,"name":"Rent"},
-    {"id":8,"user_id":5,"name":"Insurance"},
-    {"id":9,"user_id":5,"name":"Car"},
-    {"id":10,"user_id":6,"name":"Mortgage"},
-    {"id":11,"user_id":6,"name":"Officer stuff"},
-    {"id":12,"user_id":3,"name":"Gas"},
-    {"id":13,"user_id":4,"name":"Donations"}
+    { "id": 1, "user_id": 1, "name": "Food" },
+    { "id": 2, "user_id": 1, "name": "Clothes" },
+    { "id": 3, "user_id": 2, "name": "Food" },
+    { "id": 4, "user_id": 2, "name": "Supplements" },
+    { "id": 5, "user_id": 3, "name": "School" },
+    { "id": 6, "user_id": 4, "name": "Bills" },
+    { "id": 7, "user_id": 4, "name": "Rent" },
+    { "id": 8, "user_id": 5, "name": "Insurance" },
+    { "id": 9, "user_id": 5, "name": "Car" },
+    { "id": 10, "user_id": 6, "name": "Mortgage" },
+    { "id": 11, "user_id": 6, "name": "Officer stuff" },
+    { "id": 12, "user_id": 3, "name": "Gas" },
+    { "id": 13, "user_id": 4, "name": "Donations" }
 ]
