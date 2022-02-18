@@ -1,0 +1,15 @@
+
+.navbar{
+    background: violet;
+    color: violet;
+}
+
+/* .navbarContainer{
+    width: 10rem;
+    height: 100vh;
+    background-color: var(--blue);
+} */
+
+.walletIcon {
+    color: var(--blue);
+}
