@@ -4,7 +4,7 @@
  */
 export function seed(knex) {
   return knex('users')
-    .truncate() 
+    .del() 
     .then(function () {
       return knex('users')
       .insert([

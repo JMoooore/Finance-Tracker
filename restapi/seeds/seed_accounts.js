@@ -4,7 +4,7 @@
  */
 export function seed(knex) {
   return knex('accounts')
-    .truncate()
+    .del()
     .then(function () {
       return knex('accounts')
       .insert([

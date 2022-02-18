@@ -4,7 +4,7 @@
  */
 export function seed(knex) {
   return knex('payees')
-    .truncate()
+    .del()
     .then(function () {
       return knex('payees').insert([
         {user_id:1,name:"Walmart"},

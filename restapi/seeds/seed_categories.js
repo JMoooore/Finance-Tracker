@@ -4,7 +4,7 @@
  */
 export function seed(knex) {
   return knex('categories')
-    .truncate()
+    .del()
     .then(function () {
       return knex('categories').insert([
         {user_id:1,name:"Food"},

@@ -4,7 +4,7 @@
  */
 export function seed(knex) {
   return knex('transactions')
-    .truncate()
+    .del()
     .then(function () {
       return knex('transactions').insert([
         {user_id:1,category_id:1,payee_id:1,account_id:1,outflow:100,inflow:0,note:""},
