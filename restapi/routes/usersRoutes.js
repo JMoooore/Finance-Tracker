@@ -8,4 +8,6 @@ users.get('/', userController.getAll);
 
 users.get('/:id', userController.getOne);
 
+users.post('/', userController.post);
+
 export default users;
