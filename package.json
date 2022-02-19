@@ -5,7 +5,11 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "format": "prettier . --write"
+        "format": "prettier . --write",
+        "postgres": "docker exec -it postgres sh",
+        "restapi": "docker exec -it sdc-restapi /bin/sh",
+        "buildup": "docker compose up -d --build",
+        "builddown": "docker compose down"
     },
     "repository": {
         "type": "git",

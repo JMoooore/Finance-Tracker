@@ -3,7 +3,6 @@ import cors from 'cors';
 import express from 'express';
 import * as routes from './routes/index.js';
 
-console.log(process.env);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
