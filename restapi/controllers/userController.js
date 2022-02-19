@@ -8,9 +8,12 @@ userController.getAll = async (req,res) => {
 }
 
 userController.getOne = async (req,res) => {
-    console.log(req.params.id)
     const data = await userModel.getOne(req.params.id)
-    console.log(data)
+    res.json(data)
+}
+
+userController.post = async (req,res) => {
+    const data = await userModel.post(req.body)
     res.json(data)
 }
 
