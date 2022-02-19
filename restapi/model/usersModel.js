@@ -4,7 +4,7 @@ const userModel = {};
 
 userModel.getAll = async () => {
     const { rows } = await db.query('SELECT * FROM users');
-    return rows
+    return rows;
 };
 
 userModel.getOne = async (id) => {
@@ -13,9 +13,12 @@ userModel.getOne = async (id) => {
 };
 
 userModel.post = async (body) => {
-    const {first_name, last_name, email, password} = body;
-    await db.query('INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)', [first_name, last_name, email, password])
-    return {message: 'New User Added'}
-}
+    const { first_name, last_name, email, password } = body;
+    await db.query(
+        'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)',
+        [first_name, last_name, email, password]
+    );
+    return { message: 'New User Added' };
+};
 
 export default userModel;
