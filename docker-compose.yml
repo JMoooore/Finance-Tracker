@@ -7,6 +7,7 @@ services:
         ports:
             - 5432:5432
         container_name: postgres
+        restart: on-failure
     frontend:
         image: sdc-frontend
         build: ./frontend
@@ -30,3 +31,5 @@ services:
             - DATABASE_USER=postgres
             - DATABASE_PASSWORD=test
             - DATABASE_NAME=sdc
+        depends_on:
+            - postgres
