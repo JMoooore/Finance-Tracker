@@ -1,0 +1,7 @@
+.navBarContainer{
+    width: 6rem;
+    height: 100vh;
+    background-color: var(--lightBlue);
+    z-index: 10;
+}
+  
