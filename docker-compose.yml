@@ -25,11 +25,6 @@ services:
             - 3001:3001
         container_name: sdc-restapi
         environment:
-            # - DATABASE_URL='postgres://postgres@postgres:5432/sdc?sslmode=disabled'
-            - DATABASE_HOST=postgres
-            - DATABASE_PORT=5432
-            - DATABASE_USER=postgres
-            - DATABASE_PASSWORD=test
-            - DATABASE_NAME=sdc
+            - DATABASE_URL=postgres://postgres:test@postgres:5432/sdc
         depends_on:
             - postgres
