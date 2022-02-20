@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from "./components/tableComponent/Table.jsx";
+import Table from "./components/Table.jsx";
 import NavBar from "./components/navbarComponent/Navbar.jsx";
 import './App.css';
 import './colors.css'
