@@ -38,7 +38,8 @@ userModel.updateOne = async (id, body) => {
             updateObj.email,
             updateObj.password,
             id,
-        ]);
+        ]
+    );
     return rows[0];
 };
 
