@@ -2,19 +2,19 @@ import db from './connection.js'
 
 const transModel = {}
 
-transModel.delete = async (id) =>{
+transModel.removeOne = async (id) =>{
     const { rows } = await db.query('DELETE FROM transactions WHERE id=$1 RETURNING *' , [id])
     return rows
         
 }
 
-transModel.postTransaction = async (body) =>{
+transModel.createOne = async (body) =>{
     const { user_id, category_id, payee_id, account_id, outflow, inflow, note} = body
     const data = await db.query('INSERT INTO transactions (user_id, category_id, payee_id, account_id, outflow, inflow, note) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *', [user_id, category_id, payee_id, account_id, outflow, inflow, note])
     return data.rows
 }
 
-transModel.editTransaction = async (id, body)=>{
+transModel.updateOne = async (id, body)=>{
     const { category_id, payee_id, account_id, outflow, inflow, note } = body
     const { rows } = await db.query('SELECT * FROM transactions WHERE id=$1', [id])
     const oldTrans = rows[0]
