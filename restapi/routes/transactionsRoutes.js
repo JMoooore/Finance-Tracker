@@ -1,16 +1,15 @@
 import { Router, json } from 'express';
-// import db from '../config/index.js';
+import transactionsController from '../controllers/transactionsController.js'
 
 const transactions = new Router();
 transactions.use(json());
 
-// transactions.get("/", async (req, res) => {
-//     try {
-//       const result = await db("transactions").select();
-//       res.json(result);
-//     } catch (err) {
-//       errorHandler(err, res);
-//     }
-//   });
+transactions.post('/', transactionsController.createOne)
+
+transactions.delete('/:id', transactionsController.removeOne)
+
+transactions.patch('/:id', transactionsController.updateOne)
+
+transactions.get('/', transactionsController.getAll)
 
 export default transactions;
