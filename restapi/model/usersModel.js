@@ -23,13 +23,12 @@ userModel.post = async (body) => {
 
 userModel.patch = async (id, body) => {
     const { first_name, last_name, email, password } = body;
-    const { rows } = await userModel.getOne(id);
-    const user = rows[0];
+    const user = await userModel.getOne(id);
     const updateObj = {
-        first_name: first_name || user.first_name,
-        last_name: last_name || user.last_name,
-        email: email || user.email,
-        password: password || user.password,
+        first_name: first_name ?? user[0].first_name,
+        last_name: last_name ?? user[0].last_name,
+        email: email ?? user[0].email,
+        password: password ?? user[0].password,
     };
     await db.query(
         'UPDATE users SET first_name=$1, last_name=$2, email=$3, password=$4 WHERE id=$5',

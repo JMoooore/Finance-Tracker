@@ -1,6 +1,5 @@
 import { Router, json } from 'express';
-import { user } from 'pg/lib/defaults';
-import userController from '../controllers/userController.js';
+import userController from '../controllers/usersController.js';
 
 const users = new Router();
 users.use(json());
@@ -11,7 +10,7 @@ users.get('/:id', userController.getOne);
 
 users.post('/', userController.post);
 
-user.patch('/:id', userController.patch);
+users.patch('/:id', userController.patch);
 
 users.delete('/:id', userController.delete);
 
