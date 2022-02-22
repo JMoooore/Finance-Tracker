@@ -21,12 +21,28 @@ userModel.post = async (body) => {
     return { message: 'New User Added' };
 };
 
-// userModel.patch = async (body) => {
-//     const { first_name, last_name, email, password } = body;
-//     await db.query(
-
-//     )
-// }
+userModel.patch = async (id, body) => {
+    const { first_name, last_name, email, password } = body;
+    const { rows } = await userModel.getOne(id);
+    const user = rows[0];
+    const updateObj = {
+        first_name: first_name || user.first_name,
+        last_name: last_name || user.last_name,
+        email: email || user.email,
+        password: password || user.password,
+    };
+    await db.query(
+        'UPDATE users SET first_name=$1, last_name=$2, email=$3, password=$4 WHERE id=$5',
+        [
+            updateObj.first_name,
+            updateObj.last_name,
+            updateObj.email,
+            updateObj.password,
+            id,
+        ]
+    );
+    return { message: `User #${id} Updated` };
+};
 
 userModel.delete = async (id) => {
     await db.query('DELETE FROM users WHERE id = $1', [id]);

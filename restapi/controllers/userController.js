@@ -17,6 +17,11 @@ userController.post = async (req, res) => {
     res.json(data);
 };
 
+userController.patch = async (req, res) => {
+    const data = await userModel.patch(req.params.id, req.body);
+    res.json(data);
+};
+
 userController.delete = async (req, res) => {
     const data = await userModel.delete(req.params.id);
     res.json(data);

@@ -11,6 +11,8 @@ users.get('/:id', userController.getOne);
 
 users.post('/', userController.post);
 
+user.patch('/:id', userController.patch);
+
 users.delete('/:id', userController.delete);
 
 export default users;
