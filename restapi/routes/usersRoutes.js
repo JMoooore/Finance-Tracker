@@ -1,17 +1,17 @@
 import { Router, json } from 'express';
-import userController from '../controllers/usersController.js';
+import usersController from '../controllers/usersController.js';
 
 const users = new Router();
 users.use(json());
 
-users.get('/', userController.getAll);
+users.get('/', usersController.getAll);
 
-users.get('/:id', userController.getOne);
+users.get('/:id', usersController.getOne);
 
-users.post('/', userController.createOne);
+users.post('/', usersController.createOne);
 
-users.patch('/:id', userController.updateOne);
+users.patch('/:id', usersController.updateOne);
 
-users.delete('/:id', userController.removeOne);
+users.delete('/:id', usersController.removeOne);
 
 export default users;
