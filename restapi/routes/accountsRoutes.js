@@ -1,16 +1,9 @@
 import { Router, json } from 'express';
-// import db from '../config/index.js';
+import accountController from '../controllers/accountsController.js';
 
 const accounts = new Router();
 accounts.use(json());
 
-// accounts.get("/", async (req, res) => {
-//     try {
-//       const result = await db("accounts").select();
-//       res.json(result);
-//     } catch (err) {
-//       errorHandler(err, res);
-//     }
-//   });
+accounts.get('/users/:id', accountController.getAllByUser);
 
 export default accounts;
