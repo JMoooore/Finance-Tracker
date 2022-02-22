@@ -17,4 +17,9 @@ userController.post = async (req, res) => {
     res.json(data);
 };
 
+userController.delete = async (req, res) => {
+    const data = await userModel.delete(req.params.id);
+    res.json(data);
+};
+
 export default userController;

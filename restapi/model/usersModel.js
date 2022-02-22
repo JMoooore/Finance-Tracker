@@ -21,4 +21,16 @@ userModel.post = async (body) => {
     return { message: 'New User Added' };
 };
 
+// userModel.patch = async (body) => {
+//     const { first_name, last_name, email, password } = body;
+//     await db.query(
+
+//     )
+// }
+
+userModel.delete = async (id) => {
+    await db.query('DELETE FROM users WHERE id = $1', [id]);
+    return { message: `User #${id} Deleted` };
+};
+
 export default userModel;
