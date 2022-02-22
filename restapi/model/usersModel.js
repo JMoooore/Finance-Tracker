@@ -12,16 +12,16 @@ userModel.getOne = async (id) => {
     return rows;
 };
 
-userModel.post = async (body) => {
+userModel.createOne = async (body) => {
     const { first_name, last_name, email, password } = body;
-    await db.query(
-        'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)',
+    const { rows } = await db.query(
+        'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *',
         [first_name, last_name, email, password]
     );
-    return { message: 'New User Added' };
+    return rows[0];
 };
 
-userModel.patch = async (id, body) => {
+userModel.updateOne = async (id, body) => {
     const { first_name, last_name, email, password } = body;
     const user = await userModel.getOne(id);
     const updateObj = {
@@ -30,8 +30,8 @@ userModel.patch = async (id, body) => {
         email: email ?? user[0].email,
         password: password ?? user[0].password,
     };
-    await db.query(
-        'UPDATE users SET first_name=$1, last_name=$2, email=$3, password=$4 WHERE id=$5',
+    const { rows } = await db.query(
+        'UPDATE users SET first_name=$1, last_name=$2, email=$3, password=$4 WHERE id=$5 RETURNING *',
         [
             updateObj.first_name,
             updateObj.last_name,
@@ -40,12 +40,15 @@ userModel.patch = async (id, body) => {
             id,
         ]
     );
-    return { message: `User #${id} Updated` };
+    return rows[0];
 };
 
-userModel.delete = async (id) => {
-    await db.query('DELETE FROM users WHERE id = $1', [id]);
-    return { message: `User #${id} Deleted` };
+userModel.removeOne = async (id) => {
+    const { rows } = await db.query(
+        'DELETE FROM users WHERE id = $1 RETURNING *',
+        [id]
+    );
+    return rows[0];
 };
 
 export default userModel;

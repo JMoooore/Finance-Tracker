@@ -12,18 +12,18 @@ userController.getOne = async (req, res) => {
     res.json(data);
 };
 
-userController.post = async (req, res) => {
-    const data = await userModel.post(req.body);
+userController.createOne = async (req, res) => {
+    const data = await userModel.createOne(req.body);
     res.json(data);
 };
 
-userController.patch = async (req, res) => {
-    const data = await userModel.patch(req.params.id, req.body);
+userController.updateOne = async (req, res) => {
+    const data = await userModel.updateOne(req.params.id, req.body);
     res.json(data);
 };
 
-userController.delete = async (req, res) => {
-    const data = await userModel.delete(req.params.id);
+userController.removeOne = async (req, res) => {
+    const data = await userModel.removeOne(req.params.id);
     res.json(data);
 };
 

@@ -8,10 +8,10 @@ users.get('/', userController.getAll);
 
 users.get('/:id', userController.getOne);
 
-users.post('/', userController.post);
+users.post('/', userController.createOne);
 
-users.patch('/:id', userController.patch);
+users.patch('/:id', userController.updateOne);
 
-users.delete('/:id', userController.delete);
+users.delete('/:id', userController.removeOne);
 
 export default users;
