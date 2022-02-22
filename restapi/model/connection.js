@@ -1,11 +1,9 @@
 import pg from 'pg';
 
+const connectionString = process.env.DATABASE_URL
+
 const pool = new pg.Pool({
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE_NAME,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    port: process.env.DATABASE_PORT,
+    connectionString,
 });
 
 export default pool;

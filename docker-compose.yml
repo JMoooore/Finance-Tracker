@@ -31,5 +31,6 @@ services:
             - DATABASE_USER=postgres
             - DATABASE_PASSWORD=test
             - DATABASE_NAME=sdc
+            - DATABASE_URL=postgres://postgres:test@postgres:5432/sdc
         depends_on:
             - postgres
