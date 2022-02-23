@@ -17,5 +17,5 @@ build-image:
         - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
         - docker build -t $CI_REGISTRY/m7093/system-design-capstone/sdc-frontend-prod:latest ./frontend
         - docker build -t $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi-prod:latest ./restapi
+        - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-frontend-prod:latest
         - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi-prod:latest
-        - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-reactapp-prod:latest
