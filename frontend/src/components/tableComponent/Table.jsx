@@ -273,7 +273,7 @@ export default function Table() {
 
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <MaterialTable
                 title="Transactions"
                 columns={[
@@ -297,12 +297,12 @@ export default function Table() {
                             ? {
                                   background: '#f5f5f5',
                                   color: '#001F29',
-                                  height: '1rem',
+                                  height: '.5rem',
                               }
                             : {
                                   background: 'white',
                                   color: '#001F29',
-                                  height: '1rem',
+                                  height: '.5rem',
                               },
                     grouping: true,
                     actionsColumnIndex: -1,
