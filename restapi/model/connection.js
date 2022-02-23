@@ -1,7 +1,12 @@
 import pg from 'pg';
 
+const environment = process.env.NODE_ENV;
 const connectionString = process.env.DATABASE_URL;
-const pfConfig = { connectionString, ssl: { rejectUnauthorized: false } };
+const pfConfig = { connectionString };
+
+if (environment === 'prod') {
+    pfconfig.ssl = { rejectUnauthorized: false };
+}
 
 const pool = new pg.Pool(pfConfig);
 

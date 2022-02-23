@@ -1,6 +1,6 @@
 export default {
     client: 'pg',
-    connection: process.env.DATABASE_URL + '?ssl=true',
+    connection: process.env.DATABASE_URL + '?sslmode=require',
     migrations: {
         directory: '../model/migrations',
     },
