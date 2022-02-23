@@ -12,14 +12,14 @@ payeesController.addOne = async (req, res) => {
     res.json(data);
 };
 
-payeesController.deleteOne = async (req,res) => {
+payeesController.deleteOne = async (req, res) => {
     const data = await payeesModel.deleteOne(req.params.payee_id);
-    res.json(data)
-}
+    res.json(data);
+};
 
-payeesController.changeOne = async (req,res) => {
-    const data = await payeesModel.changeOne(req.params.payee_id, req.body)
-    res.json(data)
-}
+payeesController.changeOne = async (req, res) => {
+    const data = await payeesModel.changeOne(req.params.payee_id, req.body);
+    res.json(data);
+};
 
 export default payeesController;
