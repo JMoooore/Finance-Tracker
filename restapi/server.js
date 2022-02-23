@@ -14,7 +14,7 @@ app.use(cors(corsConfig));
 
 app.use('/accounts', routes.accounts);
 app.use('/categories', routes.categories);
-app.use('/payee', routes.payee);
+app.use('/payees', routes.payees);
 app.use('/transactions', routes.transactions);
 app.use('/users', routes.users);
 
