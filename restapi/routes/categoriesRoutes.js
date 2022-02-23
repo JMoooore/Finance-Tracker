@@ -1,16 +1,15 @@
 import { Router, json } from 'express';
-// import db from '../config/index.js';
+import categoriesController from '../controllers/categoriesController.js';
 
 const categories = new Router();
 categories.use(json());
 
-// catergories.get("/", async (req, res) => {
-//     try {
-//       const result = await db("catergories").select();
-//       res.json(result);
-//     } catch (err) {
-//       errorHandler(err, res);
-//     }
-//   });
+categories.get('/forUser:user_id', categoriesController.getAll);
+
+categories.post('/forUser:user_id', categoriesController.addOne);
+
+categories.delete('/:category_id', categoriesController.removeOne);
+
+categories.patch('/:category_id', categoriesController.updateOne);
 
 export default categories;
