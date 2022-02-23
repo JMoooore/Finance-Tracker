@@ -13,8 +13,8 @@ build-image:
     image: docker:19.03.12
     stage: deploy
     environment:
-      name: prod
-      url: http://174.138.41.154
+        name: prod
+        url: http://174.138.41.154
     services:
         - docker:19.03.12-dind
     script:
