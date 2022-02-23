@@ -1,11 +1,11 @@
-import bcryptjs from "bcryptjs"
+import bcryptjs from 'bcryptjs';
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
 
-const password = bcryptjs.hashSync('1234', 10)
+const password = bcryptjs.hashSync('1234', 10);
 
 export function seed(knex) {
     return knex('users')
