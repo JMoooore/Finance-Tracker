@@ -1,5 +1,6 @@
 stages:
     - build
+    - deploy
 
 format-check:
     stage: build
@@ -10,7 +11,10 @@ format-check:
 
 build-image:
     image: docker:19.03.12
-    stage: build
+    stage: deploy
+    environment:
+      name: prod
+      url: http://174.138.41.154:3000
     services:
         - docker:19.03.12-dind
     script:
