@@ -12,6 +12,11 @@ userController.getOne = async (req, res) => {
     res.json(data);
 };
 
+userController.getFullData = async (req, res) => {
+    const data = await userModel.getFullData(req.params.id);
+    res.json(data);
+};
+
 userController.createOne = async (req, res) => {
     const data = await userModel.createOne(req.body);
     res.json(data);

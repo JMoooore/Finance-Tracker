@@ -8,6 +8,8 @@ users.get('/', usersController.getAll);
 
 users.get('/:id', usersController.getOne);
 
+users.get('/all/:id', usersController.getFullData);
+
 users.post('/', usersController.createOne);
 
 users.patch('/:id', usersController.updateOne);
