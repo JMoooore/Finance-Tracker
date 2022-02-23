@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, SpeedDial, SpeedDialAction } from '@mui/material';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './navbar.module.css';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import axios from 'axios';
+import TableContext from '../../context/TableContext';
 
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
     position: 'absolute',
@@ -62,6 +63,7 @@ const actions = [
 ];
 
 export default function Navbar() {
+    const { getTransData } = useContext(TableContext);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -69,6 +71,7 @@ export default function Navbar() {
 
     const handleRenderNavigate = () => {
         navigate('/transactions');
+        getTransData();
     };
 
     return (
