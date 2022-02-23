@@ -2,10 +2,13 @@ version: '3.3'
 services:
     frontend:
         image: registry.gitlab.com/m7093/system-design-capstone/sdc-frontend:prod
+        environment:
+            - NODE_ENV=prod
         ports:
             - 80:80
 
     restapi:
         image: registry.gitlab.com/m7093/system-design-capstone/sdc-restapi:prod
         environment:
+            - NODE_ENV=prod
             - DATABASE_URL=${DATABASE_URL}
