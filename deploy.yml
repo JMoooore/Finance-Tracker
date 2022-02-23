@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 services:
   frontend:
     image: registry.gitlab.com/m7093/system-design-capstone/sdc-frontend:prod
@@ -9,5 +9,3 @@ services:
     image: registry.gitlab.com/m7093/system-design-capstone/sdc-restapi:prod
     environment:
       - DATABASE_URL=${DATABASE_URL}
-    depends_on:
-      - postgres
