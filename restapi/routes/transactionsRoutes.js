@@ -4,12 +4,12 @@ import transactionsController from '../controllers/transactionsController.js';
 const transactions = new Router();
 transactions.use(json());
 
-transactions.post('/', transactionsController.createOne);
+transactions.get('/forUser:user_id', transactionsController.getAll);
 
-transactions.delete('/:id', transactionsController.removeOne);
+transactions.post('/forUser:user_id', transactionsController.createOne);
 
-transactions.patch('/:id', transactionsController.updateOne);
+transactions.delete('/:transaction_id', transactionsController.removeOne);
 
-transactions.get('/', transactionsController.getAll);
+transactions.patch('/:transaction_id', transactionsController.updateOne);
 
 export default transactions;
