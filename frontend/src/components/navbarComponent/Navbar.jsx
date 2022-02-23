@@ -47,9 +47,10 @@ const theme = createTheme({
 });
 
 function testingGet() {
-    axios.get(`http://localhost:3001/users`)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err))
+    axios
+        .get(`http://localhost:3001/users`)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
 }
 
 const actions = [
@@ -64,11 +65,11 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const handleRenderNavigate = ()  => {
-        navigate('/transactions')
-    }
+    const handleRenderNavigate = () => {
+        navigate('/transactions');
+    };
 
     return (
         <>
@@ -76,9 +77,8 @@ export default function Navbar() {
                 <div className={styles.navBarContainer}>
                     <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
                         <Box sx={{ position: 'relative', mt: 3, height: 50 }}>
-                        
-                        <div>
-                            {/* <Link to="/transactions"> */}
+                            <div>
+                                {/* <Link to="/transactions"> */}
                                 <StyledSpeedDial
                                     ariaLabel=""
                                     icon={
@@ -103,8 +103,7 @@ export default function Navbar() {
                                         />
                                     ))}
                                 </StyledSpeedDial>
-                            {/* </Link> */}
-
+                                {/* </Link> */}
                             </div>
                         </Box>
                     </Box>
