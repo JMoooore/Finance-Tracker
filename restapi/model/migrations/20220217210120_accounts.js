@@ -8,7 +8,7 @@ export function up(knex) {
         table.integer('user_id');
         table.foreign('user_id').references('users.id').onDelete('CASCADE');
         table.string('name');
-        table.specificType('balance', 'money');
+        table.integer('balance');
     });
 }
 
