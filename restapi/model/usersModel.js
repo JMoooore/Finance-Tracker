@@ -1,4 +1,5 @@
 import db from './connection.js';
+import bcryptjs from 'bcryptjs'
 
 const userModel = {};
 
@@ -22,12 +23,27 @@ userModel.getFullData = async (id) => {
 
 userModel.createOne = async (body) => {
     const { first_name, last_name, email, password } = body;
+
+    const hashedPassword = await bcryptjs.hash(password, 10)
+
     const { rows } = await db.query(
         'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *',
-        [first_name, last_name, email, password]
+        [first_name, last_name, email, hashedPassword]
     );
     return rows[0];
 };
+
+userModel.login = async (body) => {
+    const { email, password } = body;
+    const { rows } = await db.query('SELECT * FROM users WHERE email=$1', [email])
+
+    if (rows.length && rows[0].email === email) {
+        if (await bcryptjs.compare(password, rows[0].password)) {
+            return rows
+        }
+    }
+    return undefined
+}
 
 userModel.updateOne = async (id, body) => {
     const { first_name, last_name, email, password } = body;
