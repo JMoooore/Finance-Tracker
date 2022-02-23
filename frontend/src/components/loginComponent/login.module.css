@@ -143,7 +143,7 @@ input[type='text'] {
     border: 0;
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
     border-radius: 10px;
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
 }
 
 input[type='password'] {
@@ -152,7 +152,7 @@ input[type='password'] {
     border: 0;
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
     border-radius: 10px;
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
 }
 
 .signUpLink {

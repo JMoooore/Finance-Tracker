@@ -14,8 +14,8 @@ export function up(knex) {
         table.foreign('account_id').references('accounts.id');
         table.foreign('category_id').references('categories.id');
         table.datetime('date', { useTz: false }).defaultTo(knex.fn.now());
-        table.specificType('inflow', 'money');
-        table.specificType('outflow', 'money');
+        table.integer('inflow');
+        table.integer('outflow');
         table.string('note');
     });
 }
