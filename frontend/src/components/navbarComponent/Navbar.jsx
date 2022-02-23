@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, SpeedDial, SpeedDialAction } from '@mui/material';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './navbar.module.css';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import axios from 'axios';
