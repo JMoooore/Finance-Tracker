@@ -7,11 +7,6 @@ payeesModel.getAll = async (user_id) => {
     return rows;
 };
 
-payeesModel.getOne = async (payee_id) => {
-    const { rows } = await db.query('SELECT * FROM payees WHERE id=$1', [payee_id]);
-    return rows;
-};
-
 payeesModel.addOne = async (user_id, body) => {
     const { name } = body;
     const {rows} = await db.query(
