@@ -4,10 +4,8 @@ import { useState, useEffect, useContext } from 'react';
 import TableContext from '../../context/TableContext';
 
 export default function Table() {
-    const {transData, setTransData} = useContext(TableContext)
+    const { transData, setTransData } = useContext(TableContext);
 
-    
-    
     return (
         <>
             <MaterialTable
@@ -20,7 +18,11 @@ export default function Table() {
                     { title: 'Outflow', field: 'outflow', type: 'currency' },
                     { title: 'Inflow', field: 'inflow', type: 'currency' },
                     { title: 'Note', field: 'note' },
-                    { title: 'Balance', field: 'account_balance', type: 'currency'}
+                    {
+                        title: 'Balance',
+                        field: 'account_balance',
+                        type: 'currency',
+                    },
                 ]}
                 //should be const data passed in instead of all of this dummy data
                 data={transData}
@@ -81,7 +83,6 @@ export default function Table() {
                         }),
                 }}
             />
-            
         </>
     );
 }
