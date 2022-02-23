@@ -12,6 +12,8 @@ users.get('/all/:id', usersController.getFullData);
 
 users.post('/', usersController.createOne);
 
+users.post('/login', usersController.login);
+
 users.patch('/:id', usersController.updateOne);
 
 users.delete('/:id', usersController.removeOne);
