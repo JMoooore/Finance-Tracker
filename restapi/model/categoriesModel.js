@@ -2,47 +2,33 @@ import db from './connection.js';
 
 const categoriesModel = {};
 
-categoriesModel.getAll = async () => {
-    const { rows } = await db.query('SELECT * FROM categories');
+categoriesModel.getAll = async (user_id) => {
+    const { rows } = await db.query('SELECT * FROM categories WHERE user_id=$1', [user_id]);
     return rows;
 };
 
-categoriesModel.getOne = async (id) => {
-    const { rows } = await db.query('SELECT * FROM categories WHERE id=$1', [
-        id,
-    ]);
+categoriesModel.addOne = async (user_id, body) => {
+    const {name} = body
+    const { rows } = await db.query('INSERT INTO categories (user_id, name) VALUES ($1, $2) RETURNING id',
+    [user_id, name]);
     return rows;
 };
 
-categoriesModel.createOne = async (body) => {
-    const { user_id, name } = body;
+categoriesModel.removeOne = async (category_id) => {
     const { rows } = await db.query(
-        'INSERT INTO categories (user_id, name) VALUES ($1, $2) RETURNING *',
-        [user_id, name]
+        'DELETE FROM categories WHERE id = $1 RETURNING id',
+        [category_id]
     );
     return rows[0];
 };
 
-categoriesModel.updateOne = async (id, body) => {
-    const { user_id, name } = body;
-    const category = await categoriesModel.getOne(id);
-    const updateObj = {
-        user_id: user_id ?? category[0].user_id,
-        name: name ?? category[0].name,
-    };
+categoriesModel.updateOne = async (category_id, body) => {
+    const { name } = body;
     const { rows } = await db.query(
-        'UPDATE categories SET user_id=$1, name=$2 WHERE id=$3 RETURNING *',
-        [updateObj.user_id, updateObj.name, id]
+        'UPDATE categories SET name=$1 WHERE id=$2 RETURNING id',
+        [name, category_id]
     );
-    return rows[0];
-};
-
-categoriesModel.removeOne = async (id) => {
-    const { rows } = await db.query(
-        'DELETE FROM categories WHERE id = $1 RETURNING *',
-        [id]
-    );
-    return rows[0];
+    return rows;
 };
 
 export default categoriesModel;

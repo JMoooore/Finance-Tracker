@@ -4,14 +4,12 @@ import categoriesController from '../controllers/categoriesController.js';
 const categories = new Router();
 categories.use(json());
 
-categories.get('/', categoriesController.getAll);
+categories.get('/forUser:user_id', categoriesController.getAll);
 
-categories.get('/:id', categoriesController.getOne);
+categories.post('/forUser:user_id', categoriesController.addOne);
 
-categories.post('/', categoriesController.createOne);
+categories.delete('/:category_id', categoriesController.removeOne);
 
-categories.patch('/:id', categoriesController.updateOne);
-
-categories.delete('/:id', categoriesController.removeOne);
+categories.patch('/:category_id', categoriesController.updateOne);
 
 export default categories;
