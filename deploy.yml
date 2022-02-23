@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   frontend:
     image: registry.gitlab.com/m7093/system-design-capstone/sdc-frontend:prod
