@@ -5,10 +5,11 @@ services:
     ports:
       - 80:80
     container_name: sdc-frontend
-restapi:
-  image: registry.gitlab.com/m7093/system-design-capstone/sdc-restapi:prod
-  container_name: sdc-restapi
-  environment:
-    - DATABASE_URL=postgres://postgres:test@postgres:5432/sdc
-  depends_on:
-    - postgres
+
+  restapi:
+    image: registry.gitlab.com/m7093/system-design-capstone/sdc-restapi:prod
+    container_name: sdc-restapi
+    environment:
+      - DATABASE_URL=postgres://postgres:test@postgres:5432/sdc
+    depends_on:
+      - postgres
