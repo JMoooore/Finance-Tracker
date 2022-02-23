@@ -11,15 +11,8 @@ transModel.removeOne = async (transaction_id) => {
 };
 
 transModel.createOne = async (user_id, body) => {
-    const {
-        category_id,
-        payee_id,
-        account_id,
-        outflow,
-        inflow,
-        note,
-    } = body;
-    const {rows} = await db.query(
+    const { category_id, payee_id, account_id, outflow, inflow, note } = body;
+    const { rows } = await db.query(
         'INSERT INTO transactions (user_id, category_id, payee_id, account_id, outflow, inflow, note) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *',
         [user_id, category_id, payee_id, account_id, outflow, inflow, note]
     );
@@ -56,7 +49,10 @@ transModel.updateOne = async (transaction_id, body) => {
 };
 
 transModel.getAll = async (user_id) => {
-    const { rows } = await db.query('SELECT * FROM transactions WHERE user_id=$1', [user_id]);
+    const { rows } = await db.query(
+        'SELECT * FROM transactions WHERE user_id=$1',
+        [user_id]
+    );
     return rows;
 };
 

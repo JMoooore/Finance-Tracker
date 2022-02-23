@@ -12,9 +12,23 @@ userController.getOne = async (req, res) => {
     res.json(data);
 };
 
+userController.getFullData = async (req, res) => {
+    const data = await userModel.getFullData(req.params.id);
+    res.json(data);
+};
+
 userController.createOne = async (req, res) => {
     const data = await userModel.createOne(req.body);
     res.json(data);
+};
+
+userController.login = async (req, res) => {
+    const data = await userModel.login(req.body);
+    if (data) {
+        res.json(data);
+    } else {
+        res.status(500).send('Login failed');
+    }
 };
 
 userController.updateOne = async (req, res) => {

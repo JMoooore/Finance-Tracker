@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Box, SpeedDial, SpeedDialAction } from '@mui/material';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './navbar.module.css';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import axios from 'axios';
 
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
     position: 'absolute',
@@ -45,7 +46,15 @@ const theme = createTheme({
     },
 });
 
+function testingGet() {
+    axios
+        .get(`http://localhost:3001/users`)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+}
+
 const actions = [
+    { icon: <AttachMoneyIcon />, name: 'All' },
     { icon: <AttachMoneyIcon />, name: 'Checking' },
     { icon: <AttachMoneyIcon />, name: 'Savings' },
     { icon: <AttachMoneyIcon />, name: 'Wallet' },
@@ -56,6 +65,11 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const navigate = useNavigate();
+
+    const handleRenderNavigate = () => {
+        navigate('/transactions');
+    };
 
     return (
         <>
@@ -63,7 +77,8 @@ export default function Navbar() {
                 <div className={styles.navBarContainer}>
                     <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
                         <Box sx={{ position: 'relative', mt: 3, height: 50 }}>
-                            <Link to="/transactions">
+                            <div>
+                                {/* <Link to="/transactions"> */}
                                 <StyledSpeedDial
                                     ariaLabel=""
                                     icon={
@@ -83,11 +98,13 @@ export default function Navbar() {
                                             tooltipTitle={action.name}
                                             tooltipPlacement="right"
                                             tooltipOpen
-                                            onClick={handleClose}
+                                            onClick={handleRenderNavigate}
+                                            // onClick={handleClose}
                                         />
                                     ))}
                                 </StyledSpeedDial>
-                            </Link>
+                                {/* </Link> */}
+                            </div>
                         </Box>
                     </Box>
                 </div>
