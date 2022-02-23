@@ -3,14 +3,19 @@ import db from './connection.js';
 const categoriesModel = {};
 
 categoriesModel.getAll = async (user_id) => {
-    const { rows } = await db.query('SELECT * FROM categories WHERE user_id=$1', [user_id]);
+    const { rows } = await db.query(
+        'SELECT * FROM categories WHERE user_id=$1',
+        [user_id]
+    );
     return rows;
 };
 
 categoriesModel.addOne = async (user_id, body) => {
-    const {name} = body
-    const { rows } = await db.query('INSERT INTO categories (user_id, name) VALUES ($1, $2) RETURNING id',
-    [user_id, name]);
+    const { name } = body;
+    const { rows } = await db.query(
+        'INSERT INTO categories (user_id, name) VALUES ($1, $2) RETURNING id',
+        [user_id, name]
+    );
     return rows;
 };
 

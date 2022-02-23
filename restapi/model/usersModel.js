@@ -12,6 +12,14 @@ userModel.getOne = async (id) => {
     return rows;
 };
 
+userModel.getFullData = async (id) => {
+    const { rows } = await db.query(
+        'SELECT t.id as transaction_id, t.user_id, t.payee_id, t.account_id, t.category_id, t.date, t.inflow, t.outflow, t.note, p.name AS payee_name, c.name AS category_name, a.name AS account_name, a.balance AS account_balance FROM transactions t INNER JOIN payees AS p ON p.id = t.payee_id INNER JOIN categories AS c ON c.id = t.category_id INNER JOIN accounts AS a ON a.id = t.account_id WHERE t.user_id = $1',
+        [id]
+    );
+    return rows;
+};
+
 userModel.createOne = async (body) => {
     const { first_name, last_name, email, password } = body;
     const { rows } = await db.query(

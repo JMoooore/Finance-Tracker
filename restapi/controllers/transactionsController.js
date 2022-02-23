@@ -18,7 +18,10 @@ transactionsController.createOne = async (req, res) => {
 };
 
 transactionsController.updateOne = async (req, res) => {
-    const data = await transModel.updateOne(req.params.transaction_id, req.body);
+    const data = await transModel.updateOne(
+        req.params.transaction_id,
+        req.body
+    );
     res.json(data);
 };
 

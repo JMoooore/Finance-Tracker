@@ -18,7 +18,10 @@ categoriesController.removeOne = async (req, res) => {
 };
 
 categoriesController.updateOne = async (req, res) => {
-    const data = await categoriesModel.updateOne(req.params.category_id, req.body);
+    const data = await categoriesModel.updateOne(
+        req.params.category_id,
+        req.body
+    );
     res.json(data);
 };
 
