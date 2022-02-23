@@ -30,7 +30,8 @@ userModel.createOne = async (body) => {
         'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *',
         [first_name, last_name, email, hashedPassword]
     );
-    return rows[0];
+    delete rows[0].password
+    return rows;
 };
 
 userModel.login = async (body) => {
@@ -41,6 +42,7 @@ userModel.login = async (body) => {
 
     if (rows.length && rows[0].email === email) {
         if (await bcryptjs.compare(password, rows[0].password)) {
+            delete rows[0].password
             return rows;
         }
     }
