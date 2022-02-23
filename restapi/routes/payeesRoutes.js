@@ -10,6 +10,6 @@ payees.post('/forUser:user_id', payeesController.addOne);
 
 payees.delete('/:payee_id', payeesController.deleteOne);
 
-payees.patch('/:payee_id', payeesController.changeOne)
+payees.patch('/:payee_id', payeesController.changeOne);
 
 export default payees;
