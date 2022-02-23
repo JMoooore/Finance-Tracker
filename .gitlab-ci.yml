@@ -6,7 +6,7 @@ format-check:
     image: node:17-alpine3.14
     script:
         - echo "Formatting code"
-        - npx prettier . --write
+        - npx prettier . --check
 
 build-image:
     image: docker:19.03.12
