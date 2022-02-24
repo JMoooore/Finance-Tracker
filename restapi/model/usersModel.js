@@ -5,7 +5,9 @@ const usersModel = {};
 
 usersModel.getAll = async () => {
     const { rows } = await db.query('SELECT * FROM users');
-    delete rows[0].password;
+    rows.forEach(element => {
+        delete element.password;
+    });
     return rows;
 };
 
@@ -70,6 +72,7 @@ usersModel.changeOne = async (id, body) => {
             id,
         ]
     );
+    delete rows[0].password;
     return rows[0];
 };
 
@@ -78,6 +81,7 @@ usersModel.deleteOne = async (id) => {
         'DELETE FROM users WHERE id = $1 RETURNING *',
         [id]
     );
+    delete rows[0].password;
     return rows[0];
 };
 

@@ -27,7 +27,7 @@ usersController.getOne = async (req, res) => {
 };
 
 usersController.getTransactionsData = async (req, res) => {
-    const data = await usersModel.getFullData(req.params.id);
+    const data = await usersModel.getTransactionsData(req.params.id);
     res.json(data);
 };
 
@@ -46,12 +46,12 @@ usersController.login = async (req, res) => {
 };
 
 usersController.changeOne = async (req, res) => {
-    const data = await usersModel.updateOne(req.params.id, req.body);
+    const data = await usersModel.changeOne(req.params.id, req.body);
     res.json(data);
 };
 
 usersController.deleteOne = async (req, res) => {
-    const data = await usersModel.removeOne(req.params.id);
+    const data = await usersModel.deleteOne(req.params.id);
     res.json(data);
 };
 

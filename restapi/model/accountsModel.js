@@ -25,7 +25,7 @@ accountsModel.addOne = async (id, body) => {
 
 accountsModel.changeOne = async (id, body) => {
     const { balance, name } = body;
-    const account = await accountsModel.getSingle(id);
+    const account = await accountsModel.getOne(id);
     const updateObj = {
         name: name ?? account[0].name,
         balance: balance ?? account[0].balance,

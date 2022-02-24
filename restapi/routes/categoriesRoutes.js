@@ -10,6 +10,6 @@ categories.post('/forUser:user_id', categoriesController.addOne);
 
 categories.delete('/:category_id', categoriesController.deleteOne);
 
-categories.patch('/:category_id', categoriesController.updateOne);
+categories.patch('/:category_id', categoriesController.changeOne);
 
 export default categories;

@@ -13,7 +13,7 @@ accountsController.addOne = async (req, res) => {
 };
 
 accountsController.changeOne = async (req, res) => {
-    const data = await accountsModel.updateOne(req.params.account_id, req.body);
+    const data = await accountsModel.changeOne(req.params.account_id, req.body);
     res.json(data);
 };
 
