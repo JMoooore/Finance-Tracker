@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styles from './login.module.css';
 import './login.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Login() {
@@ -16,83 +16,51 @@ export default function Login() {
 
     const navigate = useNavigate();
 
-    // const [showErr, setShowErr] = useState(false);
-    // const [showWelcome, setShowWelcome] = useState(false);
-    // const [hideLoginCard, setHideLoginCard] = useState(false)
-    // const [displayName, setDisplayName] = useState("")
-
-    // const changeSuccesLogin = () => {
-    //     if(showErr) setShowErr(false)
-    //     setHideLoginCard(true)
-    //     setShowWelcome(true)
-    // };
 
     async function handleSignInSubmit(e) {
-        /// check user
         e.preventDefault();
         axios
-            .get(`http://localhost:3001/users`)
-            .then((res) => {
-                for (let i = 0; i < res.data.length; i++) {
-                    let current = res.data[i];
-                    if (
-                        current.email === signinEmailRef.current.value &&
-                        current.password === signinPasswordRef.current.value
-                    ) {
-                        // props.setUser(current)
-                        // setDisplayName(current.first_name)
-                        // changeSuccesLogin()
-                        // setShowErr(false)
-                        navigate('/dashboard');
-                        // setTimeout(() =>{
-                        //     navigate('/dashboard')
-                        // }, 2000)
-                    }
-                    // } else {
-                    //     setShowErr(true)
-                    // }
-                }
+            .post(`http://localhost:3001/users/login`, {
+                email: signinEmailRef.current.value,
+                password: signinPasswordRef.current.value
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .then(res => navigate('/dashboard'))
+            .catch((err) => {console.log(err);})
+
+            signinPasswordRef.current.value = null
+            signinEmailRef.current.value = null
     }
 
-    // function handleCreateUser() {                        //// for creating user
-    //     axios.post('http://localhost:3001/users', {
-    //         email: emailRef.current.value,
-    //         first_name: firstNameRef.current.value,
-    //         last_name: lastNameRef.current.value,
-    //         password: passwordRef.current.value
-    //     })
-    //     .then(res => {props.setUser(res.data[0])})
-    //     .catch((err) => {console.log(err);})
-    // }
+    function handleCreateUser() {        
+        axios.post('http://localhost:3001/users', {
+            email: emailRef.current.value,
+            first_name: firstNameRef.current.value,
+            last_name: lastNameRef.current.value,
+            password: passwordRef.current.value
+        })
+        .then(res => console.log(res.data))
+        .catch((err) => {console.log(err);})
+    }
 
-    // async function handleSignUpSubmit(e) {
-    //     e.preventDefault()
-    //     if(!passwordRef.current.value ||
-    //         !emailRef.current.value ||
-    //         !lastNameRef.current.value ||
-    //         !firstNameRef.current.value ||
-    //         !confirmPasswordRef.current.value) {
-    //         setShowErr(true)
-    //     } else if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-    //         setShowErr(true)
-    //     } else {
-    //         handleCreateUser()
-    //         setFirstName(firstNameRef.current.value)
-    //         changeSuccessSignup()
-    //         setTimeout(() =>{
-    //             navigate('/dashboard')
-    //         }, 2000)
-    //     }
-    //     passwordRef.current.value = null
-    //     emailRef.current.value = null
-    //     firstNameRef.current.value = null
-    //     lastNameRef.current.value = null
-    //     confirmPasswordRef.current.value = null
-    // }
+    async function handleSignUpSubmit(e) {
+        e.preventDefault()
+        if(!passwordRef.current.value ||
+            !emailRef.current.value ||
+            !lastNameRef.current.value ||
+            !firstNameRef.current.value ||
+            !confirmPasswordRef.current.value) {
+        } else if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+            console.log('err')
+        } else {
+            handleCreateUser()
+            navigate('/dashboard')
+        }
+        passwordRef.current.value = null
+        emailRef.current.value = null
+        firstNameRef.current.value = null
+        lastNameRef.current.value = null
+        confirmPasswordRef.current.value = null
+    }
 
     const [showSignin, setShowSignin] = useState(true);
 
@@ -106,20 +74,6 @@ export default function Login() {
 
     return (
         <>
-            {/* <div className={styles.mainLoginPageContainer}>
-            <h1 className={showWelcome ? styles.shownSuccessLogin : styles.hiddenSuccessLogin}>Welcome Back {displayName}</h1>   
-            <div className={hideLoginCard ? styles.hiddenSuccessLoginCard :  styles.shownLoginCard }>
-                <h1 className={styles.loginTitle}>Login</h1>                        
-                <h1 className={showErr ? styles.shownErr : styles.hiddenErr}>Invalid username and/or password</h1>                
-                <form className={styles.loginForm} onSubmit={handleSubmit}>
-                    <div><input type="text" placeholder='Email..' ref={emailRef} /></div>
-                    <div><input type="password"placeholder='Password..' ref={passwordRef}  /></div>
-                    <button type="submit" className={styles.loginBtn}>Login</button>
-                </form>
-                <div>or</div>
-               <Link to="/signup"> <h1 className={styles.signUpLink}>Sign Up</h1></Link>
-            </div>
-        </div> */}
 
             <div
                 className={
@@ -166,7 +120,7 @@ export default function Login() {
                             />
                         </div>
 
-                        <button>Sign Up</button>
+                        <button onClick={handleSignUpSubmit}>Sign Up</button>
                     </form>
                 </div>
                 <div class="form-container sign-in-container">
