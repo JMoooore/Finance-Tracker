@@ -1,27 +1,27 @@
-import transModel from '../model/transModel.js';
+import transactionsModel from '../model/transactionsModel.js';
 
 const transactionsController = {};
 
-transactionsController.getAll = async (req, res) => {
-    const data = await transModel.getAll(req.params.user_id);
+transactionsController.getAllByUser = async (req, res) => {
+    const data = await transactionsModel.getAllByUser(req.params.user_id);
     res.json(data);
 };
 
-transactionsController.removeOne = async (req, res) => {
-    const data = await transModel.removeOne(req.params.transaction_id);
+transactionsController.addOne = async (req, res) => {
+    const data = await transactionsModel.addOne(req.params.user_id, req.body);
     res.json(data);
 };
 
-transactionsController.createOne = async (req, res) => {
-    const data = await transModel.createOne(req.params.user_id, req.body);
-    res.json(data);
-};
-
-transactionsController.updateOne = async (req, res) => {
-    const data = await transModel.updateOne(
+transactionsController.changeOne = async (req, res) => {
+    const data = await transactionsModel.changeOne(
         req.params.transaction_id,
         req.body
     );
+    res.json(data);
+};
+
+transactionsController.deleteOne = async (req, res) => {
+    const data = await transactionsModel.deleteOne(req.params.transaction_id);
     res.json(data);
 };
 
