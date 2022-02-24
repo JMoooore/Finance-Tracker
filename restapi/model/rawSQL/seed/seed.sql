@@ -27,9 +27,9 @@ INSERT INTO payees (user_id, name) VALUES (5, 'Galvanize');
 INSERT INTO payees (user_id, name) VALUES (6, 'Academy');
 INSERT INTO payees (user_id, name) VALUES (1, 'HEB');
 
-INSERT INTO transactions (user_id, category_id, payee_id, account_id,outflow, inflow, note) VALUES (1,1,1,1,100,0,'');
-INSERT INTO transactions (user_id, category_id, payee_id, account_id,outflow, inflow, note) VALUES (2,2,2,2,200,0,'');
-INSERT INTO transactions (user_id, category_id, payee_id, account_id,outflow, inflow, note) VALUES (3,3,3,3,300,0,'');
-INSERT INTO transactions (user_id, category_id, payee_id, account_id,outflow, inflow, note) VALUES (4,4,4,4,400,0,'');
-INSERT INTO transactions (user_id, category_id, payee_id, account_id,outflow, inflow, note) VALUES (5,5,5,5,500,0,'');
-INSERT INTO transactions (user_id, category_id, payee_id, account_id,outflow, inflow, note) VALUES (6,6,6,6,600,0,'');
+INSERT INTO transactions (user_id, category_id, payee_id, account_id, outflow, inflow, note) VALUES (1,1,1,1,100,0,'');
+INSERT INTO transactions (user_id, category_id, payee_id, account_id, outflow, inflow, note) VALUES (2,2,2,2,200,0,'');
+INSERT INTO transactions (user_id, category_id, payee_id, account_id, outflow, inflow, note) VALUES (3,3,3,3,300,0,'');
+INSERT INTO transactions (user_id, category_id, payee_id, account_id, outflow, inflow, note) VALUES (4,4,4,4,400,0,'');
+INSERT INTO transactions (user_id, category_id, payee_id, account_id, outflow, inflow, note) VALUES (5,5,5,5,500,0,'');
+INSERT INTO transactions (user_id, category_id, payee_id, account_id, outflow, inflow, note) VALUES (6,6,6,6,600,0,'');
