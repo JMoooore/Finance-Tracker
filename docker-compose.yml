@@ -3,9 +3,10 @@ services:
         image: postgres:14.2-alpine
         environment:
             - POSTGRES_PASSWORD=test
+            - POSTGRES_USER=app
             - POSTGRES_DB=sdc
         ports:
-            - 5432:5432
+            - 5435:5432
         container_name: postgres
         restart: on-failure
     frontend:
@@ -25,6 +26,6 @@ services:
             - 3001:3001
         container_name: sdc-restapi
         environment:
-            - DATABASE_URL=postgres://postgres:test@postgres:5432/sdc
+            - DATABASE_URL=postgres://app:test@postgres:5432/sdc
         depends_on:
             - postgres
