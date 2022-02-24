@@ -12,7 +12,7 @@ userController.getAllData = async (req, res) => {
         transactions: await userModel.getFullData(req.params.id),
         payees: await payeesModel.getAll(req.params.id),
         categories: await categoriesModel.getAll(req.params.id),
-        accounts: await accountModel.getAllAccounts(req.params.id),
+        accounts: await accountModel.getAllByUser(req.params.id),
     };
     res.json(data);
 };
