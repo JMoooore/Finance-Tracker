@@ -5,7 +5,7 @@ import TableContext from '../../context/TableContext';
 
 
 export default function Table() {
-    const { transData, setTransData, getTransData, postNewTrans } = useContext(TableContext);
+    const { transData, setTransData, getTransData, postNewTrans, user, transactions, payees, categories, accounts } = useContext(TableContext);
     useEffect(()=>{
         getTransData()
     }, [])
@@ -15,21 +15,22 @@ export default function Table() {
             <MaterialTable
                 title="Transactions"
                 columns={[
-                    { title: 'Payee', field: 'payee_name'},
-                    { title: 'Category', field: 'category_name' },
-                    { title: 'Account', field: 'account_name' },
-                    { title: 'Date', field: 'date', type: 'date' },
-                    { title: 'Outflow', field: 'outflow', type: 'currency' },
-                    { title: 'Inflow', field: 'inflow', type: 'currency' },
+                    { title: 'Payee', field: 'payee_name', },
+                    { title: 'Category', field: 'category_name',  },
+                    { title: 'Account', field: 'account_name',  },
+                    { title: 'Date', field: 'date', type: 'date', },
+                    { title: 'Outflow', field: 'outflow', type: 'currency',  },
+                    { title: 'Inflow', field: 'inflow', type: 'currency',},
                     { title: 'Note', field: 'note' },
                     {
                         title: 'Balance',
                         field: 'account_balance',
                         type: 'currency',
+                        //validate: rowData => rowData.account_balance !== ''
                     },
                 ]}
                 //should be const data passed in instead of all of this dummy data
-                data={transData}
+                data={transactions[0]}
                 options={{
                     addRowPosition: 'first',
                     pageSizeOptions: [5, 10, 25, 50],
