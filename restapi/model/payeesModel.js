@@ -2,7 +2,7 @@ import db from './connection.js';
 
 const payeesModel = {};
 
-payeesModel.getAll = async (user_id) => {
+payeesModel.getAllByUser = async (user_id) => {
     const { rows } = await db.query('SELECT * FROM payees WHERE user_id=$1', [
         user_id,
     ]);
