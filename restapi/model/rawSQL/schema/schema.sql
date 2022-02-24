@@ -33,8 +33,10 @@ CREATE TABLE transactions(
 	payee_id INT REFERENCES payees(id) ON DELETE CASCADE,
 	account_id INT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
 	category_id INT REFERENCES categories(id) ON DELETE CASCADE,
-	date DATE,
+	date DATE DEFAULT now(),
 	inflow MONEY,
 	outflow MONEY,
 	note TEXT
 );
+
+\i model/rawSQL/seed/seed.sql;
