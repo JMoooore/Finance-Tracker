@@ -3,15 +3,19 @@ import MaterialTable from 'material-table';
 import { useState, useEffect, useContext } from 'react';
 import TableContext from '../../context/TableContext';
 
-export default function Table() {
-    const { transData, setTransData } = useContext(TableContext);
 
+export default function Table() {
+    const { transData, setTransData, getTransData, postNewTrans } = useContext(TableContext);
+    useEffect(()=>{
+        getTransData()
+    }, [])
+     
     return (
         <>
             <MaterialTable
                 title="Transactions"
                 columns={[
-                    { title: 'Payee', field: 'payee_name' },
+                    { title: 'Payee', field: 'payee_name'},
                     { title: 'Category', field: 'category_name' },
                     { title: 'Account', field: 'account_name' },
                     { title: 'Date', field: 'date', type: 'date' },
@@ -27,6 +31,7 @@ export default function Table() {
                 //should be const data passed in instead of all of this dummy data
                 data={transData}
                 options={{
+                    addRowPosition: 'first',
                     pageSizeOptions: [5, 10, 25, 50],
                     pageSize: 10,
                     columnsButton: true,
@@ -51,36 +56,34 @@ export default function Table() {
                     },
                 }}
                 editable={{
-                    onRowAdd: (newData) =>
-                        new Promise((resolve, reject) => {
+                    onRowAdd: async (newData) =>{
+                        
                             setTimeout(() => {
-                                // setData([...data, newData]);
-
-                                resolve();
-                            }, 1000);
-                        }),
-                    onRowUpdate: (newData, oldData) =>
-                        new Promise((resolve, reject) => {
+                                // const newObj = newData
+                                // newObj.user_id = transData[0].user_id
+                                // console.log(newObj)
+                                // postNewTrans(newObj)
+                                // getTransData()
+                            }, 1000)
+                        },
+                    onRowUpdate: async (newData, oldData) =>{
                             setTimeout(() => {
-                                // const dataUpdate = [...data];
+                                // const dataUpdate = [...transData];
                                 // const index = oldData.tableData.id;
                                 // dataUpdate[index] = newData;
-                                // setData([...dataUpdate]);
+                                // setTransData([...dataUpdate]);
 
-                                resolve();
                             }, 1000);
-                        }),
-                    onRowDelete: (oldData) =>
-                        new Promise((resolve, reject) => {
+                        },
+                    onRowDelete: async (oldData) =>{
                             setTimeout(() => {
-                                // const dataDelete = [...data];
+                                // const dataDelete = [...transData];
                                 // const index = oldData.tableData.id;
                                 // dataDelete.splice(index, 1);
-                                // setData([...dataDelete]);
+                                // setTransData([...dataDelete]);
 
-                                resolve();
                             }, 1000);
-                        }),
+                        },
                 }}
             />
         </>
