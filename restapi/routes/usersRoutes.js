@@ -4,7 +4,7 @@ import usersController from '../controllers/usersController.js';
 const users = new Router();
 users.use(json());
 
-users.get('/:id/data', usersController.getAllData)
+users.get('/:id/data', usersController.getAllData);
 
 users.get('/', usersController.getAll);
 
