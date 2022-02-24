@@ -5,11 +5,13 @@ const userModel = {};
 
 userModel.getAll = async () => {
     const { rows } = await db.query('SELECT * FROM users');
+    delete rows[0].password;
     return rows;
 };
 
 userModel.getOne = async (id) => {
     const { rows } = await db.query('SELECT * FROM users WHERE id=$1', [id]);
+    delete rows[0].password;
     return rows;
 };
 
