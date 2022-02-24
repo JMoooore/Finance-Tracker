@@ -1,8 +1,8 @@
 import db from './connection.js';
 
-const transModel = {};
+const transactionsModel = {};
 
-transModel.removeOne = async (transaction_id) => {
+transactionsModel.deleteOne = async (transaction_id) => {
     const { rows } = await db.query(
         'DELETE FROM transactions WHERE id=$1 RETURNING id',
         [transaction_id]
@@ -10,7 +10,7 @@ transModel.removeOne = async (transaction_id) => {
     return rows;
 };
 
-transModel.createOne = async (user_id, body) => {
+transactionsModel.addOne = async (user_id, body) => {
     const { category_id, payee_id, account_id, outflow, inflow, note } = body;
     const { rows } = await db.query(
         'INSERT INTO transactions (user_id, category_id, payee_id, account_id, outflow, inflow, note) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *',
@@ -19,7 +19,7 @@ transModel.createOne = async (user_id, body) => {
     return rows;
 };
 
-transModel.updateOne = async (transaction_id, body) => {
+transactionsModel.changeOne = async (transaction_id, body) => {
     const { category_id, payee_id, account_id, outflow, inflow, note } = body;
     const { rows } = await db.query('SELECT * FROM transactions WHERE id=$1', [
         transaction_id,
@@ -48,7 +48,7 @@ transModel.updateOne = async (transaction_id, body) => {
     return data.rows;
 };
 
-transModel.getAll = async (user_id) => {
+transactionsModel.getAllByUser = async (user_id) => {
     const { rows } = await db.query(
         'SELECT * FROM transactions WHERE user_id=$1',
         [user_id]
@@ -56,4 +56,4 @@ transModel.getAll = async (user_id) => {
     return rows;
 };
 
-export default transModel;
+export default transactionsModel;

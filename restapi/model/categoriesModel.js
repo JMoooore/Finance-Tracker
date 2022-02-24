@@ -2,7 +2,7 @@ import db from './connection.js';
 
 const categoriesModel = {};
 
-categoriesModel.getAll = async (user_id) => {
+categoriesModel.getAllByUser = async (user_id) => {
     const { rows } = await db.query(
         'SELECT * FROM categories WHERE user_id=$1',
         [user_id]
@@ -19,7 +19,7 @@ categoriesModel.addOne = async (user_id, body) => {
     return rows;
 };
 
-categoriesModel.removeOne = async (category_id) => {
+categoriesModel.deleteOne = async (category_id) => {
     const { rows } = await db.query(
         'DELETE FROM categories WHERE id = $1 RETURNING id',
         [category_id]
@@ -27,7 +27,7 @@ categoriesModel.removeOne = async (category_id) => {
     return rows[0];
 };
 
-categoriesModel.updateOne = async (category_id, body) => {
+categoriesModel.changeOne = async (category_id, body) => {
     const { name } = body;
     const { rows } = await db.query(
         'UPDATE categories SET name=$1 WHERE id=$2 RETURNING id',
