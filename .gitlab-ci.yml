@@ -19,7 +19,12 @@ build-image:
         - docker:19.03.12-dind
     script:
         - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-        - docker build -t $CI_REGISTRY/m7093/system-design-capstone/sdc-frontend:prod ./frontend
+
+        - docker build
+          --build-arg api_base_url=$PROD_API_BASE_URL
+          -t $CI_REGISTRY/sdc-frontend:prod
+          ./frontend
+
         - docker build -t $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi:prod ./restapi
         - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-frontend:prod
         - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi:prod
