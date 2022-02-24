@@ -5,12 +5,12 @@ import accountsModel from '../model/accountsModel.js';
 
 const usersController = {};
 
-usersController.getAllData = async (req, res) => {
+usersController.getAllDataForUser = async (req, res) => {
     const data = {
         user: await usersModel.getOne(req.params.id),
-        transactions: await usersModel.getFullData(req.params.id),
-        payees: await payeesModel.getAll(req.params.id),
-        categories: await categoriesModel.getAll(req.params.id),
+        transactions: await usersModel.getTransactionsData(req.params.id),
+        payees: await payeesModel.getAllByUser(req.params.id),
+        categories: await categoriesModel.getAllByUser(req.params.id),
         accounts: await accountsModel.getAllByUser(req.params.id),
     };
     res.json(data);
@@ -26,7 +26,7 @@ usersController.getOne = async (req, res) => {
     res.json(data);
 };
 
-usersController.getFullData = async (req, res) => {
+usersController.getTransactionsData = async (req, res) => {
     const data = await usersModel.getFullData(req.params.id);
     res.json(data);
 };
@@ -45,12 +45,12 @@ usersController.login = async (req, res) => {
     }
 };
 
-usersController.updateOne = async (req, res) => {
+usersController.changeOne = async (req, res) => {
     const data = await usersModel.updateOne(req.params.id, req.body);
     res.json(data);
 };
 
-usersController.removeOne = async (req, res) => {
+usersController.deleteOne = async (req, res) => {
     const data = await usersModel.removeOne(req.params.id);
     res.json(data);
 };
