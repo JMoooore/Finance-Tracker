@@ -26,6 +26,6 @@ build-image:
           ./frontend
 
         - docker build -t $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi:prod ./restapi
-        - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-frontend:prod
+        - docker push $CI_REGISTRY/sdc-frontend:prod
         - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi:prod
     when: manual
