@@ -8,7 +8,7 @@ CMD ["npm","run","start"]
 
 FROM node:17-alpine3.14 as builder
 ARG api_base_url=http://localhost:3001
-ENV API_BASE_URL=$api_base_url
+ENV REACT_APP_BASE_API_URL=$api_base_url
 WORKDIR /app
 COPY package.json package.json
 COPY package-lock.json package-lock.json 
