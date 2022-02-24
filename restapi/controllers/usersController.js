@@ -6,8 +6,13 @@ import accountsModel from '../model/accountsModel.js';
 const usersController = {};
 
 usersController.getAllDataForUser = async (req, res) => {
+    const userData = (await usersModel.getOne(req.params.id))[0]
+    
     const data = {
-        user: await usersModel.getOne(req.params.id),
+        id : userData.id,
+        first_name: userData.first_name,
+        last_name: userData.last_name,
+        email: userData.email,
         transactions: await usersModel.getTransactionsData(req.params.id),
         payees: await payeesModel.getAllByUser(req.params.id),
         categories: await categoriesModel.getAllByUser(req.params.id),
