@@ -2,8 +2,8 @@ import categoriesModel from '../model/categoriesModel.js';
 
 const categoriesController = {};
 
-categoriesController.getAll = async (req, res) => {
-    const data = await categoriesModel.getAll(req.params.user_id);
+categoriesController.getAllByUser = async (req, res) => {
+    const data = await categoriesModel.getAllByUser(req.params.user_id);
     res.json(data);
 };
 
@@ -12,16 +12,16 @@ categoriesController.addOne = async (req, res) => {
     res.json(data);
 };
 
-categoriesController.removeOne = async (req, res) => {
-    const data = await categoriesModel.removeOne(req.params.category_id);
-    res.json(data);
-};
-
-categoriesController.updateOne = async (req, res) => {
-    const data = await categoriesModel.updateOne(
+categoriesController.changeOne = async (req, res) => {
+    const data = await categoriesModel.changeOne(
         req.params.category_id,
         req.body
     );
+    res.json(data);
+};
+
+categoriesController.deleteOne = async (req, res) => {
+    const data = await categoriesModel.deleteOne(req.params.category_id);
     res.json(data);
 };
 

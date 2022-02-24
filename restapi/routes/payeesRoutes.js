@@ -4,7 +4,7 @@ import payeesController from '../controllers/payeesController.js';
 const payees = new Router();
 payees.use(json());
 
-payees.get('/forUser:user_id', payeesController.getAll);
+payees.get('/forUser:user_id', payeesController.getAllByUser);
 
 payees.post('/forUser:user_id', payeesController.addOne);
 

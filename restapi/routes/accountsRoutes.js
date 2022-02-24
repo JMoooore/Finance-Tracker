@@ -1,15 +1,15 @@
 import { Router, json } from 'express';
-import accountController from '../controllers/accountsController.js';
+import accountsController from '../controllers/accountsController.js';
 
 const accounts = new Router();
 accounts.use(json());
 
-accounts.get('/forUser:user_id', accountController.getAllByUser);
+accounts.get('/forUser:user_id', accountsController.getAllByUser);
 
-accounts.post('/forUser:user_id', accountController.createNewAccount);
+accounts.post('/forUser:user_id', accountsController.addOne);
 
-accounts.patch('/:account_id', accountController.updateOneAccount);
+accounts.delete('/:account_id', accountsController.deleteOne);
 
-accounts.delete('/:account_id', accountController.deleteOneAccount);
+accounts.patch('/:account_id', accountsController.changeOne);
 
 export default accounts;

@@ -1,25 +1,20 @@
 import db from './connection.js';
 
-const accountModel = {};
+const accountsModel = {};
 
-accountModel.getSingleAccount = async (id) => {
+accountsModel.getOne = async (id) => {
     const { rows } = await db.query('SELECT * FROM accounts WHERE id=$1', [id]);
     return rows;
 };
 
-accountModel.getAllByUser = async (id) => {
+accountsModel.getAllByUser = async (id) => {
     const { rows } = await db.query('SELECT * FROM accounts WHERE user_id=$1', [
         id,
     ]);
     return rows;
 };
 
-accountModel.getAllAccounts = async () => {
-    const { rows } = await db.query('SELECT * FROM accounts');
-    return rows;
-};
-
-accountModel.createNewAccount = async (id, body) => {
+accountsModel.addOne = async (id, body) => {
     const { balance, name } = body;
     const { rows } = await db.query(
         'INSERT INTO accounts (user_id, name, balance) VALUES ($1, $2, $3) RETURNING *',
@@ -28,9 +23,9 @@ accountModel.createNewAccount = async (id, body) => {
     return rows[0];
 };
 
-accountModel.updateOneAccount = async (id, body) => {
+accountsModel.changeOne = async (id, body) => {
     const { balance, name } = body;
-    const account = await accountModel.getSingleAccount(id);
+    const account = await accountsModel.getSingle(id);
     const updateObj = {
         name: name ?? account[0].name,
         balance: balance ?? account[0].balance,
@@ -42,7 +37,7 @@ accountModel.updateOneAccount = async (id, body) => {
     return rows[0];
 };
 
-accountModel.deleteOneAccount = async (id) => {
+accountsModel.deleteOne = async (id) => {
     const { rows } = await db.query(
         'DELETE FROM accounts WHERE id=$1 RETURNING *',
         [id]
@@ -50,4 +45,4 @@ accountModel.deleteOneAccount = async (id) => {
     return rows[0];
 };
 
-export default accountModel;
+export default accountsModel;

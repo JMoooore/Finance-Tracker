@@ -1,44 +1,43 @@
-import userModel from '../model/usersModel.js';
-import transModel from '../model/transModel.js';
+import usersModel from '../model/usersModel.js';
 import payeesModel from '../model/payeesModel.js';
 import categoriesModel from '../model/categoriesModel.js';
-import accountModel from '../model/accountsModel.js';
+import accountsModel from '../model/accountsModel.js';
 
-const userController = {};
+const usersController = {};
 
-userController.getAllData = async (req, res) => {
+usersController.getAllData = async (req, res) => {
     const data = {
-        user: await userModel.getOne(req.params.id),
-        transactions: await userModel.getFullData(req.params.id),
+        user: await usersModel.getOne(req.params.id),
+        transactions: await usersModel.getFullData(req.params.id),
         payees: await payeesModel.getAll(req.params.id),
         categories: await categoriesModel.getAll(req.params.id),
-        accounts: await accountModel.getAllByUser(req.params.id),
+        accounts: await accountsModel.getAllByUser(req.params.id),
     };
     res.json(data);
 };
 
-userController.getAll = async (req, res) => {
-    const data = await userModel.getAll();
+usersController.getAll = async (req, res) => {
+    const data = await usersModel.getAll();
     res.json(data);
 };
 
-userController.getOne = async (req, res) => {
-    const data = await userModel.getOne(req.params.id);
+usersController.getOne = async (req, res) => {
+    const data = await usersModel.getOne(req.params.id);
     res.json(data);
 };
 
-userController.getFullData = async (req, res) => {
-    const data = await userModel.getFullData(req.params.id);
+usersController.getFullData = async (req, res) => {
+    const data = await usersModel.getFullData(req.params.id);
     res.json(data);
 };
 
-userController.createOne = async (req, res) => {
-    const data = await userModel.createOne(req.body);
+usersController.createOne = async (req, res) => {
+    const data = await usersModel.createOne(req.body);
     res.json(data);
 };
 
-userController.login = async (req, res) => {
-    const data = await userModel.login(req.body);
+usersController.login = async (req, res) => {
+    const data = await usersModel.login(req.body);
     if (data) {
         res.json(data);
     } else {
@@ -46,14 +45,14 @@ userController.login = async (req, res) => {
     }
 };
 
-userController.updateOne = async (req, res) => {
-    const data = await userModel.updateOne(req.params.id, req.body);
+usersController.updateOne = async (req, res) => {
+    const data = await usersModel.updateOne(req.params.id, req.body);
     res.json(data);
 };
 
-userController.removeOne = async (req, res) => {
-    const data = await userModel.removeOne(req.params.id);
+usersController.removeOne = async (req, res) => {
+    const data = await usersModel.removeOne(req.params.id);
     res.json(data);
 };
 
-export default userController;
+export default usersController;

@@ -1,21 +1,21 @@
 import db from './connection.js';
 import bcryptjs from 'bcryptjs';
 
-const userModel = {};
+const usersModel = {};
 
-userModel.getAll = async () => {
+usersModel.getAll = async () => {
     const { rows } = await db.query('SELECT * FROM users');
     delete rows[0].password;
     return rows;
 };
 
-userModel.getOne = async (id) => {
+usersModel.getOne = async (id) => {
     const { rows } = await db.query('SELECT * FROM users WHERE id=$1', [id]);
     delete rows[0].password;
     return rows;
 };
 
-userModel.getFullData = async (id) => {
+usersModel.getFullData = async (id) => {
     const { rows } = await db.query(
         'SELECT t.id as transaction_id, t.user_id, t.payee_id, t.account_id, t.category_id, t.date, t.inflow, t.outflow, t.note, p.name AS payee_name, c.name AS category_name, a.name AS account_name, a.balance AS account_balance FROM transactions t INNER JOIN payees AS p ON p.id = t.payee_id INNER JOIN categories AS c ON c.id = t.category_id INNER JOIN accounts AS a ON a.id = t.account_id WHERE t.user_id = $1',
         [id]
@@ -23,7 +23,7 @@ userModel.getFullData = async (id) => {
     return rows;
 };
 
-userModel.createOne = async (body) => {
+usersModel.createOne = async (body) => {
     const { first_name, last_name, email, password } = body;
 
     const hashedPassword = await bcryptjs.hash(password, 10);
@@ -36,7 +36,7 @@ userModel.createOne = async (body) => {
     return rows;
 };
 
-userModel.login = async (body) => {
+usersModel.login = async (body) => {
     const { email, password } = body;
     const { rows } = await db.query('SELECT * FROM users WHERE email=$1', [
         email,
@@ -51,9 +51,9 @@ userModel.login = async (body) => {
     return undefined;
 };
 
-userModel.updateOne = async (id, body) => {
+usersModel.updateOne = async (id, body) => {
     const { first_name, last_name, email, password } = body;
-    const user = await userModel.getOne(id);
+    const user = await usersModel.getOne(id);
     const updateObj = {
         first_name: first_name ?? user[0].first_name,
         last_name: last_name ?? user[0].last_name,
@@ -73,7 +73,7 @@ userModel.updateOne = async (id, body) => {
     return rows[0];
 };
 
-userModel.removeOne = async (id) => {
+usersModel.removeOne = async (id) => {
     const { rows } = await db.query(
         'DELETE FROM users WHERE id = $1 RETURNING *',
         [id]
@@ -81,4 +81,4 @@ userModel.removeOne = async (id) => {
     return rows[0];
 };
 
-export default userModel;
+export default usersModel;
