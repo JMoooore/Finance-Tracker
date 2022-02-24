@@ -11,7 +11,11 @@ services:
         restart: on-failure
     frontend:
         image: sdc-frontend
-        build: ./frontend
+        build:
+            context: ./frontend
+            target: dev
+        environment:
+            - REACT_APP_API_BASE_URL=http://localhost:3001
         volumes:
             - ./frontend:/app
         ports:
@@ -19,7 +23,9 @@ services:
         container_name: sdc-frontend
     restapi:
         image: sdc-restapi
-        build: ./restapi
+        build:
+            context: ./restapi
+            target: dev
         volumes:
             - ./restapi:/app
         ports:
