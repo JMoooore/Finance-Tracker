@@ -16,50 +16,58 @@ export default function Login() {
 
     const navigate = useNavigate();
 
-
     async function handleSignInSubmit(e) {
         e.preventDefault();
         axios
             .post(`http://localhost:3001/users/login`, {
                 email: signinEmailRef.current.value,
-                password: signinPasswordRef.current.value
+                password: signinPasswordRef.current.value,
             })
-            .then(res => navigate('/dashboard'))
-            .catch((err) => {console.log(err);})
+            .then((res) => navigate('/dashboard'))
+            .catch((err) => {
+                console.log(err);
+            });
 
-            signinPasswordRef.current.value = null
-            signinEmailRef.current.value = null
+        signinPasswordRef.current.value = null;
+        signinEmailRef.current.value = null;
     }
 
-    function handleCreateUser() {        
-        axios.post('http://localhost:3001/users', {
-            email: emailRef.current.value,
-            first_name: firstNameRef.current.value,
-            last_name: lastNameRef.current.value,
-            password: passwordRef.current.value
-        })
-        .then(res => console.log(res.data))
-        .catch((err) => {console.log(err);})
+    function handleCreateUser() {
+        axios
+            .post('http://localhost:3001/users', {
+                email: emailRef.current.value,
+                first_name: firstNameRef.current.value,
+                last_name: lastNameRef.current.value,
+                password: passwordRef.current.value,
+            })
+            .then((res) => console.log(res.data))
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     async function handleSignUpSubmit(e) {
-        e.preventDefault()
-        if(!passwordRef.current.value ||
+        e.preventDefault();
+        if (
+            !passwordRef.current.value ||
             !emailRef.current.value ||
             !lastNameRef.current.value ||
             !firstNameRef.current.value ||
-            !confirmPasswordRef.current.value) {
-        } else if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-            console.log('err')
+            !confirmPasswordRef.current.value
+        ) {
+        } else if (
+            passwordRef.current.value !== confirmPasswordRef.current.value
+        ) {
+            console.log('err');
         } else {
-            handleCreateUser()
-            navigate('/dashboard')
+            handleCreateUser();
+            navigate('/dashboard');
         }
-        passwordRef.current.value = null
-        emailRef.current.value = null
-        firstNameRef.current.value = null
-        lastNameRef.current.value = null
-        confirmPasswordRef.current.value = null
+        passwordRef.current.value = null;
+        emailRef.current.value = null;
+        firstNameRef.current.value = null;
+        lastNameRef.current.value = null;
+        confirmPasswordRef.current.value = null;
     }
 
     const [showSignin, setShowSignin] = useState(true);
@@ -74,7 +82,6 @@ export default function Login() {
 
     return (
         <>
-
             <div
                 className={
                     'container ' + (showSignin ? ' ' : 'right-panel-active')
