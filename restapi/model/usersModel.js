@@ -5,7 +5,7 @@ const usersModel = {};
 
 usersModel.getAll = async () => {
     const { rows } = await db.query('SELECT * FROM users');
-    rows.forEach(element => {
+    rows.forEach((element) => {
         delete element.password;
     });
     return rows;
