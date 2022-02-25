@@ -3,6 +3,7 @@ import styles from './login.module.css';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { BASE_API_URL } from '../../config/apiUrl.js';
 
 export default function Login() {
     const signinEmailRef = useRef();
@@ -19,7 +20,7 @@ export default function Login() {
     async function handleSignInSubmit(e) {
         e.preventDefault();
         axios
-            .post(`http://localhost:3001/users/login`, {
+            .post(BASE_API_URL + '/users/login', {
                 email: signinEmailRef.current.value,
                 password: signinPasswordRef.current.value,
             })
