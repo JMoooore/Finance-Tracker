@@ -52,11 +52,72 @@ export const TableProvider = ({ children }) => {
         );
     };
 
+    const updateTransaction = async (userInput) => {
+        const transaction_id = userInput.transaction_id;
+        const data = {};
+        data.user_id = userData.id;
+        data.inflow = userInput.inflow;
+        data.outflow = userInput.outflow;
+        data.note = userInput.note;
+
+        const payee = userData.payees.find(
+            (payee) => payee.name == userInput.payee_name
+        );
+        if (payee) {
+            data.payee_id = payee.id;
+        } else {
+            const inputObj = {
+                user_id: data.user_id,
+                name: userInput.payee_name,
+            };
+            data.payee_id = await postNewPayee(inputObj);
+        }
+
+        const category = userData.categories.find(
+            (category) => category.name == userInput.category_name
+        );
+        if (category) {
+            data.category_id = category.id;
+        } else {
+            const inputObj = {
+                user_id: data.user_id,
+                name: userInput.category_name,
+            };
+            data.category_id = await postNewCategory(inputObj);
+        }
+
+        const account = userData.accounts.find(
+            (account) => account.name == userInput.account_name
+        );
+
+        if (account) {
+            data.account_id = account.id;
+        } else {
+            const inputObj = {
+                user_id: data.user_id,
+                name: userInput.account_name,
+            };
+            data.account_id = await postNewAccount(inputObj);
+        }
+
+        await axios.patch(`/transactions/${transaction_id}`, data);
+
+        const singleTransaction = userData.transactions.find(
+            (transaction) => transaction.transaction_id === transaction_id
+        );
+        const index = userData.transactions.indexOf(singleTransaction);
+
+        userData.transactions.splice(index, 1, userInput);
+
+        setUserData({ ...userData });
+    };
+
     const addTransaction = async (userInput) => {
         const data = {};
         data.user_id = userData.id;
         data.inflow = userInput.inflow;
         data.outflow = userInput.outflow;
+        data.note = userInput.note;
 
         const payee = userData.payees.find(
             (payee) => payee.name == userInput.payee_name
@@ -113,6 +174,7 @@ export const TableProvider = ({ children }) => {
         <TableContext.Provider
             value={{
                 addTransaction,
+                updateTransaction,
                 userData,
                 getUserData,
                 setUserData,
