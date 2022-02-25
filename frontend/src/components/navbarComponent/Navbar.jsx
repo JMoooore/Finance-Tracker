@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Box, SpeedDial, SpeedDialAction } from '@mui/material';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
 import { useNavigate } from 'react-router-dom';
 import styles from './navbar.module.css';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import axios from 'axios';
-import TableContext from '../../context/TableContext';
 
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
     position: 'absolute',
@@ -47,31 +45,23 @@ const theme = createTheme({
     },
 });
 
-function testingGet() {
-    axios
-        .get(`http://localhost:3001/users`)
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
-}
-
 const actions = [
-    { icon: <AttachMoneyIcon />, name: 'All' },
-    { icon: <AttachMoneyIcon />, name: 'Checking' },
-    { icon: <AttachMoneyIcon />, name: 'Savings' },
-    { icon: <AttachMoneyIcon />, name: 'Wallet' },
-    { icon: <AttachMoneyIcon />, name: 'Investments' },
+    { icon: <AttachMoneyIcon />, name: 'Transactions' },
+    { icon: <AttachMoneyIcon />, name: 'Dashboard' },
 ];
 
 export default function Navbar() {
-    const { getTransData } = useContext(TableContext);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const navigate = useNavigate();
 
-    const handleRenderNavigate = () => {
+    const handleNavigateTransactions = () => {
         navigate('/transactions');
-        // getTransData();
+    };
+
+    const handleNavigateDashboard = () => {
+        navigate('/dashboard');
     };
 
     return (
@@ -81,7 +71,6 @@ export default function Navbar() {
                     <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
                         <Box sx={{ position: 'relative', mt: 3, height: 50 }}>
                             <div>
-                                {/* <Link to="/transactions"> */}
                                 <StyledSpeedDial
                                     ariaLabel=""
                                     icon={
@@ -94,19 +83,24 @@ export default function Navbar() {
                                     onOpen={handleOpen}
                                     open={open}
                                 >
-                                    {actions.map((action) => (
-                                        <SpeedDialAction
-                                            key={action.name}
-                                            icon={action.icon}
-                                            tooltipTitle={action.name}
-                                            tooltipPlacement="right"
-                                            tooltipOpen
-                                            onClick={handleRenderNavigate}
-                                            // onClick={handleClose}
-                                        />
-                                    ))}
+                                    <SpeedDialAction
+                                        key={actions[0].name}
+                                        icon={actions[0].icon}
+                                        tooltipTitle={actions[0].name}
+                                        tooltipPlacement="right"
+                                        tooltipOpen
+                                        onClick={handleNavigateTransactions}
+                                    />
+
+                                    <SpeedDialAction
+                                        key={actions[1].name}
+                                        icon={actions[1].icon}
+                                        tooltipTitle={actions[1].name}
+                                        tooltipPlacement="right"
+                                        tooltipOpen
+                                        onClick={handleNavigateDashboard}
+                                    />
                                 </StyledSpeedDial>
-                                {/* </Link> */}
                             </div>
                         </Box>
                     </Box>
