@@ -6,12 +6,12 @@ const TableContext = createContext();
 export const TableProvider = ({ children }) => {
     let [userData, setUserData] = useState({});
 
-    const getUserData = async (id) => {
-        const response = await axios.get('http://localhost:3001/users/1/data');
+    const getUserData = async (userId) => {
+        const response = await axios.get(`http://localhost:3001/users/${userId}/data`);
         setUserData(response.data);
     };
 
-    useEffect(getUserData, []);
+
     const { user, transactions, payees, categories, accounts } = userData;
 
     const postNewAccount = async (userId, obj) => {
@@ -108,6 +108,7 @@ export const TableProvider = ({ children }) => {
             value={{
                 addTransaction,
                 userData,
+                getUserData,
                 setUserData,
                 postNewTrans,
                 postNewAccount,
