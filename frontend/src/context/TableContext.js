@@ -53,7 +53,7 @@ export const TableProvider = ({ children }) => {
     };
 
     const updateTransaction = async (userInput) => {
-        const transaction_id = userInput.transaction_id
+        const transaction_id = userInput.transaction_id;
         const data = {};
         data.user_id = userData.id;
         data.inflow = userInput.inflow;
@@ -102,13 +102,15 @@ export const TableProvider = ({ children }) => {
 
         await axios.patch(`/transactions/${transaction_id}`, data);
 
-        const singleTransaction = userData.transactions.find((transaction) => transaction.transaction_id === transaction_id)
-        const index = userData.transactions.indexOf(singleTransaction)
+        const singleTransaction = userData.transactions.find(
+            (transaction) => transaction.transaction_id === transaction_id
+        );
+        const index = userData.transactions.indexOf(singleTransaction);
 
-        userData.transactions.splice(index,1,userInput)
+        userData.transactions.splice(index, 1, userInput);
 
-        setUserData({...userData})
-    }
+        setUserData({ ...userData });
+    };
 
     const addTransaction = async (userInput) => {
         const data = {};
