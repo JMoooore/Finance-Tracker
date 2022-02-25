@@ -7,6 +7,7 @@ export default function Table() {
     let {
         addTransaction,
         setUserData,
+        payeeList,
         userData,
         postNewPayee,
         postNewTrans,
@@ -29,11 +30,11 @@ export default function Table() {
                         title: 'Payee',
                         field: 'payee_id',
                         validate: (rowData) => rowData.payee_name !== '',
-                        lookup: {},
+                        lookup: payeeList,
                     },
                     {
                         title: 'Category',
-                        field: 'category_name',
+                        field: 'category_id',
                         validate: (rowData) => rowData.category_name !== '',
                     },
                     {

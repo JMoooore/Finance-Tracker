@@ -5,10 +5,15 @@ const TableContext = createContext();
 
 export const TableProvider = ({ children }) => {
     let [userData, setUserData] = useState({});
+    let payeeList = {};
 
     const getUserData = async (id) => {
         const response = await axios.get('/users/1/data');
         setUserData(response.data);
+        userData.payees.forEach((element) => {
+            return (payeeList[element.id] = element.name);
+        });
+        console.log(payeeList);
     };
 
     const { user, transactions, payees, categories, accounts } = userData;
@@ -46,7 +51,7 @@ export const TableProvider = ({ children }) => {
 
     const addTransaction = async (userInput) => {
         const data = {};
-        data.user_id = userData.user[0].id;
+        data.user_id = userData.id;
         data.inflow = userInput.inflow;
         data.outflow = userInput.outflow;
         data.payee_id = userData.payees.find(
@@ -89,6 +94,7 @@ export const TableProvider = ({ children }) => {
         <TableContext.Provider
             value={{
                 addTransaction,
+                payeeList,
                 userData,
                 getUserData,
                 setUserData,
