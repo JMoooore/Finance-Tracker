@@ -27,9 +27,9 @@ export default function Table() {
                 columns={[
                     {
                         title: 'Payee',
-                        field: 'payee_id',
+                        field: 'payee_name',
                         validate: (rowData) => rowData.payee_name !== '',
-                        lookup: {},
+                        // lookup: {},
                     },
                     {
                         title: 'Category',
