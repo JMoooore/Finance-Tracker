@@ -4,7 +4,7 @@ import Dashboard from './pages/dashboardPage/Dashboard.jsx';
 import Homepage from './pages/homePage/Homepage.jsx';
 import AllTransactions from './components/AllTransactions.jsx';
 import { TableProvider } from './context/TableContext.js';
-import { BASE_API_URL } from './config/apiUrl.js';
+import { BASE_API_URL } from './config/apiURL.js';
 import './App.css';
 import './colors.css';
 

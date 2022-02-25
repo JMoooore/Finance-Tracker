@@ -1,5 +1,5 @@
 import React, { useState, createContext, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../config/axios.js';
 
 const TableContext = createContext();
 
@@ -7,7 +7,7 @@ export const TableProvider = ({ children }) => {
     let [userData, setUserData] = useState({});
 
     const getUserData = async (id) => {
-        const response = await axios.get('http://localhost:3001/users/1/data');
+        const response = await axios.get('/users/1/data');
         setUserData(response.data);
     };
 
@@ -16,7 +16,7 @@ export const TableProvider = ({ children }) => {
 
     const postNewAccount = async (userId, obj) => {
         const response = await axios.post(
-            'http://localhost:3001/accounts/forUser1',
+            '/accounts/forUser1',
             obj
         );
         return response.id;
@@ -24,7 +24,7 @@ export const TableProvider = ({ children }) => {
 
     const postNewPayee = async (userId, obj) => {
         const response = await axios.post(
-            'http://localhost:3001/payees/forUser1',
+            '/payees/forUser1',
             obj
         );
         return response[0].id;
@@ -32,7 +32,7 @@ export const TableProvider = ({ children }) => {
 
     const postNewCategory = async (userId, obj) => {
         const response = await axios.post(
-            'http://localhost:3001/categories/forUser1',
+            '/categories/forUser1',
             obj
         );
         return response[0].id;
@@ -42,7 +42,7 @@ export const TableProvider = ({ children }) => {
         console.log(oldTransaction);
         const transaction_id = oldTransaction.transaction_id;
         const response = await axios.delete(
-            `http://localhost:3001/transactions/${transaction_id}`
+            `/transactions/${transaction_id}`
         );
         if (response.status !== 200) return;
         const newArr = userData.transactions.filter(
@@ -53,7 +53,7 @@ export const TableProvider = ({ children }) => {
 
     const postNewTrans = async (userId, obj, newData) => {
         const response = await axios.post(
-            'http://localhost:3001/transactions/forUser1',
+            '/transactions/forUser1',
             obj
         );
         setUserData({ ...userData, transactions: [...transactions, newData] });
@@ -94,7 +94,7 @@ export const TableProvider = ({ children }) => {
         //     data.account_id = await postNewAccount(data.user_id, accountObj)
         // }
         const response = await axios.post(
-            'http://localhost:3001/transactions/forUser1',
+            '/transactions/forUser1',
             data
         );
         const [{ id }] = response.data;
