@@ -14,7 +14,10 @@ export const TableProvider = ({ children }) => {
     const { user, transactions, payees, categories, accounts } = userData;
 
     const postNewAccount = async (obj) => {
-        const response = await axios.post(`/accounts/forUser${userData.id}`, obj);
+        const response = await axios.post(
+            `/accounts/forUser${userData.id}`,
+            obj
+        );
         return response.data.id;
     };
 
@@ -24,7 +27,10 @@ export const TableProvider = ({ children }) => {
     };
 
     const postNewCategory = async (obj) => {
-        const response = await axios.post(`/categories/forUser${userData.id}`, obj);
+        const response = await axios.post(
+            `/categories/forUser${userData.id}`,
+            obj
+        );
         return response.data[0].id;
     };
 
@@ -40,7 +46,10 @@ export const TableProvider = ({ children }) => {
     };
 
     const postNewTrans = async (obj) => {
-        const response = await axios.post(`/transactions/forUser${userData.id}`, obj);
+        const response = await axios.post(
+            `/transactions/forUser${userData.id}`,
+            obj
+        );
     };
 
     const addTransaction = async (userInput) => {
@@ -49,34 +58,51 @@ export const TableProvider = ({ children }) => {
         data.inflow = userInput.inflow;
         data.outflow = userInput.outflow;
 
-        const payee = userData.payees.find(payee => payee.name == userInput.payee_name)
+        const payee = userData.payees.find(
+            (payee) => payee.name == userInput.payee_name
+        );
         if (payee) {
-            data.payee_id = payee.id
+            data.payee_id = payee.id;
         } else {
-            const inputObj = {user_id: data.user_id, name:userInput.payee_name}
-            data.payee_id = await postNewPayee(inputObj)
+            const inputObj = {
+                user_id: data.user_id,
+                name: userInput.payee_name,
+            };
+            data.payee_id = await postNewPayee(inputObj);
         }
-       
-        const category = userData.categories.find(category => category.name == userInput.category_name)
+
+        const category = userData.categories.find(
+            (category) => category.name == userInput.category_name
+        );
         if (category) {
-            data.category_id = category.id
+            data.category_id = category.id;
         } else {
-            const inputObj = {user_id: data.user_id, name:userInput.category_name}
-            data.category_id = await postNewCategory(inputObj)
+            const inputObj = {
+                user_id: data.user_id,
+                name: userInput.category_name,
+            };
+            data.category_id = await postNewCategory(inputObj);
         }
 
-
-        const account = userData.accounts.find(account => account.name == userInput.account_name)
-        console.log(account)
+        const account = userData.accounts.find(
+            (account) => account.name == userInput.account_name
+        );
+        console.log(account);
         if (account) {
-            data.account_id = account.id
+            data.account_id = account.id;
         } else {
-            const inputObj = {user_id: data.user_id, name:userInput.account_name}
-            data.account_id = await postNewAccount(inputObj)
+            const inputObj = {
+                user_id: data.user_id,
+                name: userInput.account_name,
+            };
+            data.account_id = await postNewAccount(inputObj);
         }
 
-        const response = await axios.post(`/transactions/forUser${data.user_id}`, data);
-        const newData = {...data, ...userInput}
+        const response = await axios.post(
+            `/transactions/forUser${data.user_id}`,
+            data
+        );
+        const newData = { ...data, ...userInput };
         const [{ id }] = response.data;
         userInput.transaction_id = id;
         userData.transactions.push(userInput);
