@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './navbarComponent/Navbar';
-import Table from './tableComponent/Table';
+import AllTransTable from './tableComponent/AllTransTable';
 import './AllTransactions.css';
 
 export default function AllTransactions() {
@@ -8,7 +8,7 @@ export default function AllTransactions() {
         <>
             <Navbar />
             <div className="tableCont">
-                <Table />
+                <AllTransTable />
             </div>
         </>
     );
