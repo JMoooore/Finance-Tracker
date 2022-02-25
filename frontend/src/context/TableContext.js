@@ -7,10 +7,11 @@ export const TableProvider = ({ children }) => {
     let [userData, setUserData] = useState({});
 
     const getUserData = async (userId) => {
-        const response = await axios.get(`http://localhost:3001/users/${userId}/data`);
+        const response = await axios.get(
+            `http://localhost:3001/users/${userId}/data`
+        );
         setUserData(response.data);
     };
-
 
     const { user, transactions, payees, categories, accounts } = userData;
 

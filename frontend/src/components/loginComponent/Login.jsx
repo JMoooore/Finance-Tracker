@@ -17,7 +17,7 @@ export default function Login() {
 
     const navigate = useNavigate();
 
-    const {getUserData} = useContext(TableContext)
+    const { getUserData } = useContext(TableContext);
 
     async function handleSignInSubmit(e) {
         e.preventDefault();
@@ -27,8 +27,8 @@ export default function Login() {
                 password: signinPasswordRef.current.value,
             })
             .then((res) => {
-                getUserData(res.data[0].id)
-                navigate('/dashboard')
+                getUserData(res.data[0].id);
+                navigate('/dashboard');
             })
             .catch((err) => {
                 console.log(err);
