@@ -83,23 +83,23 @@ export default function Navbar() {
                                     onOpen={handleOpen}
                                     open={open}
                                 >
-                                        <SpeedDialAction
-                                            key={actions[0].name}
-                                            icon={actions[0].icon}
-                                            tooltipTitle={actions[0].name}
-                                            tooltipPlacement="right"
-                                            tooltipOpen
-                                            onClick={handleNavigateTransactions}
-                                        />
+                                    <SpeedDialAction
+                                        key={actions[0].name}
+                                        icon={actions[0].icon}
+                                        tooltipTitle={actions[0].name}
+                                        tooltipPlacement="right"
+                                        tooltipOpen
+                                        onClick={handleNavigateTransactions}
+                                    />
 
-                                        <SpeedDialAction
-                                            key={actions[1].name}
-                                            icon={actions[1].icon}
-                                            tooltipTitle={actions[1].name}
-                                            tooltipPlacement="right"
-                                            tooltipOpen
-                                            onClick={handleNavigateDashboard}
-                                        />
+                                    <SpeedDialAction
+                                        key={actions[1].name}
+                                        icon={actions[1].icon}
+                                        tooltipTitle={actions[1].name}
+                                        tooltipPlacement="right"
+                                        tooltipOpen
+                                        onClick={handleNavigateDashboard}
+                                    />
                                 </StyledSpeedDial>
                             </div>
                         </Box>
