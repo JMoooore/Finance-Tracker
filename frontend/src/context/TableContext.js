@@ -11,7 +11,6 @@ export const TableProvider = ({ children }) => {
         setUserData(response.data);
     };
 
-    useEffect(getUserData, []);
     const { user, transactions, payees, categories, accounts } = userData;
 
     const postNewAccount = async (userId, obj) => {
@@ -91,6 +90,7 @@ export const TableProvider = ({ children }) => {
             value={{
                 addTransaction,
                 userData,
+                getUserData,
                 setUserData,
                 postNewTrans,
                 postNewAccount,
