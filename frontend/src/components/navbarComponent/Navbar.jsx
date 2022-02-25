@@ -71,7 +71,7 @@ export default function Navbar() {
 
     const handleRenderNavigate = () => {
         navigate('/transactions');
-        getTransData();
+        // getTransData();
     };
 
     return (
