@@ -41,7 +41,7 @@ export default function Login() {
 
     function handleCreateUser() {
         axios
-            .post('http://localhost:3001/users', {
+            .post('/users', {
                 email: emailRef.current.value,
                 first_name: firstNameRef.current.value,
                 last_name: lastNameRef.current.value,
@@ -95,7 +95,7 @@ export default function Login() {
                 }
                 id="container"
             >
-                <div class="form-container sign-up-container">
+                <div className="form-container sign-up-container">
                     <form action="#">
                         <h1>Create Account</h1>
                         <div>
@@ -137,7 +137,7 @@ export default function Login() {
                         <button onClick={handleSignUpSubmit}>Sign Up</button>
                     </form>
                 </div>
-                <div class="form-container sign-in-container">
+                <div className="form-container sign-in-container">
                     <form action="#">
                         <h1>Sign in</h1>
                         <div>
@@ -160,9 +160,9 @@ export default function Login() {
                     </form>
                 </div>
 
-                <div class="overlay-container">
-                    <div class="overlay">
-                        <div class="overlay-panel overlay-left">
+                <div className="overlay-container">
+                    <div className="overlay">
+                        <div className="overlay-panel overlay-left">
                             <div className="overlayLeft">
                                 <h1>Welcome Back!</h1>
                                 <p>
@@ -170,7 +170,7 @@ export default function Login() {
                                     your personal info
                                 </p>
                                 <button
-                                    class="ghost"
+                                    className="ghost"
                                     id="signIn"
                                     onClick={toggleContainer}
                                 >
@@ -178,7 +178,7 @@ export default function Login() {
                                 </button>
                             </div>
                         </div>
-                        <div class="overlay-panel overlay-right">
+                        <div className="overlay-panel overlay-right">
                             <div className="overlayRight">
                                 <h1>Hello, Friend!</h1>
                                 <p>
@@ -186,7 +186,7 @@ export default function Login() {
                                     journey with us
                                 </p>
                                 <button
-                                    class="ghost"
+                                    className="ghost"
                                     id="signUp"
                                     onClick={toggleContainer}
                                 >
