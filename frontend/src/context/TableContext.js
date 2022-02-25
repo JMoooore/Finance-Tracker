@@ -7,25 +7,31 @@ export const TableProvider = ({ children }) => {
     let [userData, setUserData] = useState({});
 
     const getUserData = async (id) => {
-        const response = await axios.get('/users/1/data');
+        const response = await axios.get(`/users/${id}/data`);
         setUserData(response.data);
     };
 
     const { user, transactions, payees, categories, accounts } = userData;
 
-    const postNewAccount = async (userId, obj) => {
-        const response = await axios.post('/accounts/forUser1', obj);
-        return response.id;
+    const postNewAccount = async (obj) => {
+        const response = await axios.post(
+            `/accounts/forUser${userData.id}`,
+            obj
+        );
+        return response.data.id;
     };
 
-    const postNewPayee = async (userId, obj) => {
-        const response = await axios.post('/payees/forUser1', obj);
-        return response[0].id;
+    const postNewPayee = async (obj) => {
+        const response = await axios.post(`/payees/forUser${userData.id}`, obj);
+        return response.data[0].id;
     };
 
-    const postNewCategory = async (userId, obj) => {
-        const response = await axios.post('/categories/forUser1', obj);
-        return response[0].id;
+    const postNewCategory = async (obj) => {
+        const response = await axios.post(
+            `/categories/forUser${userData.id}`,
+            obj
+        );
+        return response.data[0].id;
     };
 
     const deleteTransaction = async (oldTransaction) => {
@@ -39,46 +45,64 @@ export const TableProvider = ({ children }) => {
         setUserData({ ...userData, transactions: newArr });
     };
 
-    const postNewTrans = async (userId, obj, newData) => {
-        const response = await axios.post('/transactions/forUser1', obj);
-        setUserData({ ...userData, transactions: [...transactions, newData] });
+    const postNewTrans = async (obj) => {
+        const response = await axios.post(
+            `/transactions/forUser${userData.id}`,
+            obj
+        );
     };
 
     const addTransaction = async (userInput) => {
         const data = {};
-        data.user_id = userData.user[0].id;
+        data.user_id = userData.id;
         data.inflow = userInput.inflow;
         data.outflow = userInput.outflow;
-        data.payee_id = userData.payees.find(
+
+        const payee = userData.payees.find(
             (payee) => payee.name == userInput.payee_name
-        ).id;
-        // if(data.payee_id === undefined || data.payee_id === null){
-        //     let payeeObj = {}
-        //     payeeObj.user_id = data.user_id
-        //     payeeObj.name = userInput.payee_name
-        //    data.payee_id = await postNewPayee(data.user_id, payeeObj)
-        // }
+        );
+        if (payee) {
+            data.payee_id = payee.id;
+        } else {
+            const inputObj = {
+                user_id: data.user_id,
+                name: userInput.payee_name,
+            };
+            data.payee_id = await postNewPayee(inputObj);
+        }
 
-        data.category_id = userData.categories.find(
+        const category = userData.categories.find(
             (category) => category.name == userInput.category_name
-        ).id;
-        // if(data.category_id === undefined || data.category_id === null){
-        //     let categoryObj = {}
-        //     categoryObj.user_id = data.user_id
-        //     categoryObj.name = userInput.category_name
-        //    data.category_id = await postNewCategory(data.user_id, categoryObj)
-        // }
+        );
+        if (category) {
+            data.category_id = category.id;
+        } else {
+            const inputObj = {
+                user_id: data.user_id,
+                name: userInput.category_name,
+            };
+            data.category_id = await postNewCategory(inputObj);
+        }
 
-        data.account_id = userData.accounts.find(
+        const account = userData.accounts.find(
             (account) => account.name == userInput.account_name
-        ).id;
-        // if(data.payee_id === undefined || data.payee_id === null){
-        //     let accountObj = {}
-        //     accountObj.user_id = data.user_id
-        //     accountObj.name = userInput.account_name
-        //     data.account_id = await postNewAccount(data.user_id, accountObj)
-        // }
-        const response = await axios.post('/transactions/forUser1', data);
+        );
+        console.log(account);
+        if (account) {
+            data.account_id = account.id;
+        } else {
+            const inputObj = {
+                user_id: data.user_id,
+                name: userInput.account_name,
+            };
+            data.account_id = await postNewAccount(inputObj);
+        }
+
+        const response = await axios.post(
+            `/transactions/forUser${data.user_id}`,
+            data
+        );
+        const newData = { ...data, ...userInput };
         const [{ id }] = response.data;
         userInput.transaction_id = id;
         userData.transactions.push(userInput);
