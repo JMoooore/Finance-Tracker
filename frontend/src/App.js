@@ -4,12 +4,14 @@ import Dashboard from './pages/dashboardPage/Dashboard.jsx';
 import Homepage from './pages/homePage/Homepage.jsx';
 import AllTransactions from './components/AllTransactions.jsx';
 import { TableProvider } from './context/TableContext.js';
+import { BASE_API_URL } from './config/apiURL.js';
 import './App.css';
 import './colors.css';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
+    console.log(BASE_API_URL);
     return (
         <TableProvider>
             <Router>
