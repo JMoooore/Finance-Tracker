@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import styles from './login.module.css';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../config/axios.js';
 import { BASE_API_URL } from '../../config/apiURL.js';
+import TableContext from '../../context/TableContext';
 
 export default function Login() {
     const signinEmailRef = useRef();
@@ -17,6 +18,8 @@ export default function Login() {
 
     const navigate = useNavigate();
 
+    const { getUserData } = useContext(TableContext);
+
     async function handleSignInSubmit(e) {
         e.preventDefault();
         axios
@@ -24,7 +27,10 @@ export default function Login() {
                 email: signinEmailRef.current.value,
                 password: signinPasswordRef.current.value,
             })
-            .then((res) => navigate('/dashboard'))
+            .then((res) => {
+                getUserData(res.data[0].id);
+                navigate('/dashboard');
+            })
             .catch((err) => {
                 console.log(err);
             });
@@ -71,7 +77,7 @@ export default function Login() {
         confirmPasswordRef.current.value = null;
     }
 
-    const [showSignin, setShowSignin] = useState(true);
+    const [showSignin, setShowSignin] = useState(false);
 
     const toggleContainer = () => {
         if (showSignin) {
