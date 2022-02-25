@@ -6,6 +6,7 @@ import TableContext from '../../context/TableContext';
 export default function Table() {
     let {
         addTransaction,
+        updateTransaction,
         setUserData,
         userData,
         postNewPayee,
@@ -90,14 +91,7 @@ export default function Table() {
                 }}
                 editable={{
                     onRowAdd: addTransaction,
-                    onRowUpdate: async (newData, oldData) => {
-                        setTimeout(() => {
-                            // const dataUpdate = [...transData];
-                            // const index = oldData.tableData.id;
-                            // dataUpdate[index] = newData;
-                            // setTransData([...dataUpdate]);
-                        }, 1000);
-                    },
+                    onRowUpdate: updateTransaction,
                     onRowDelete: deleteTransaction,
                 }}
             />
