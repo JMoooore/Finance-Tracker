@@ -1,5 +1,6 @@
 stages:
     - build
+    - deploy
 
 format-check:
     stage: build
@@ -10,14 +11,21 @@ format-check:
 
 build-image:
     image: docker:19.03.12
-    stage: build
+    stage: deploy
+    environment:
+        name: prod
+        url: http://174.138.41.154
     services:
         - docker:19.03.12-dind
     script:
         - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-        - docker build -t $CI_REGISTRY/m7093/system-design-capstone/sdc-reactapp:latest ./frontend
-        - docker build -t $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi:latest ./restapi
-        - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi:latest
-        - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-reactapp:latest
-    only:
-        - main
+
+        - docker build
+          --build-arg api_base_url=$PROD_API_BASE_URL
+          -t $CI_REGISTRY/m7093/system-design-capstone/sdc-frontend:prod
+          ./frontend
+
+        - docker build -t $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi:prod ./restapi
+        - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-frontend:prod
+        - docker push $CI_REGISTRY/m7093/system-design-capstone/sdc-restapi:prod
+    when: manual
