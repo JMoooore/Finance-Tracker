@@ -3,23 +3,63 @@ import MaterialTable from 'material-table';
 import { useState, useEffect, useContext } from 'react';
 import TableContext from '../../context/TableContext';
 
-
 export default function Table() {
-    let { addTransaction, setUserData, userData, postNewPayee, postNewTrans, postNewCategory, postNewAccount, deleteTransaction, user, transactions, payees, categories, accounts } = useContext(TableContext);
-    
+    let {
+        addTransaction,
+        setUserData,
+        userData,
+        postNewPayee,
+        postNewTrans,
+        postNewCategory,
+        postNewAccount,
+        deleteTransaction,
+        user,
+        transactions,
+        payees,
+        categories,
+        accounts,
+    } = useContext(TableContext);
+
     return (
         <>
             <MaterialTable
                 title="Transactions"
                 columns={[
-                    { title: 'Payee', field: 'payee_id', validate: rowData => rowData.payee_name !== '', lookup: {}},
-                    { title: 'Category', field: 'category_name', validate: rowData => rowData.category_name !== ''},
-                    { title: 'Account', field: 'account_name', validate: rowData => rowData.account_name !== '' },
-                    { title: 'Date', field: 'date', type: 'date', validate: rowData => rowData.date !== '' },
-                    { title: 'Outflow', field: 'outflow', type: 'currency', validate: rowData => rowData.outflow !== '' },
-                    { title: 'Inflow', field: 'inflow', type: 'currency', validate: rowData => rowData.inflow !== ''},
+                    {
+                        title: 'Payee',
+                        field: 'payee_id',
+                        validate: (rowData) => rowData.payee_name !== '',
+                        lookup: {},
+                    },
+                    {
+                        title: 'Category',
+                        field: 'category_name',
+                        validate: (rowData) => rowData.category_name !== '',
+                    },
+                    {
+                        title: 'Account',
+                        field: 'account_name',
+                        validate: (rowData) => rowData.account_name !== '',
+                    },
+                    {
+                        title: 'Date',
+                        field: 'date',
+                        type: 'date',
+                        validate: (rowData) => rowData.date !== '',
+                    },
+                    {
+                        title: 'Outflow',
+                        field: 'outflow',
+                        type: 'currency',
+                        validate: (rowData) => rowData.outflow !== '',
+                    },
+                    {
+                        title: 'Inflow',
+                        field: 'inflow',
+                        type: 'currency',
+                        validate: (rowData) => rowData.inflow !== '',
+                    },
                     { title: 'Note', field: 'note' },
-                    
                 ]}
                 //should be const data passed in instead of all of this dummy data
                 data={transactions}
@@ -50,17 +90,15 @@ export default function Table() {
                 }}
                 editable={{
                     onRowAdd: addTransaction,
-                    onRowUpdate: async (newData, oldData) =>{
-                            setTimeout(() => {
-                                // const dataUpdate = [...transData];
-                                // const index = oldData.tableData.id;
-                                // dataUpdate[index] = newData;
-                                // setTransData([...dataUpdate]);
-
-                            }, 1000);
-                        },
-                    onRowDelete: deleteTransaction
-                        
+                    onRowUpdate: async (newData, oldData) => {
+                        setTimeout(() => {
+                            // const dataUpdate = [...transData];
+                            // const index = oldData.tableData.id;
+                            // dataUpdate[index] = newData;
+                            // setTransData([...dataUpdate]);
+                        }, 1000);
+                    },
+                    onRowDelete: deleteTransaction,
                 }}
             />
         </>
