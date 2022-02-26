@@ -47,7 +47,10 @@ export default function Login() {
                 last_name: lastNameRef.current.value,
                 password: passwordRef.current.value,
             })
-            .then((res) => console.log(res.data))
+            .then((res) => {
+                getUserData(res.data[0].id);
+                navigate('/dashboard');
+            })
             .catch((err) => {
                 console.log(err);
             });
