@@ -148,7 +148,7 @@ export const TableProvider = ({ children }) => {
         const account = userData.accounts.find(
             (account) => account.name == userInput.account_name
         );
-        console.log(account);
+
         if (account) {
             data.account_id = account.id;
         } else {
