@@ -5,12 +5,13 @@ const TableContext = createContext();
 
 export const TableProvider = ({ children }) => {
     let [userData, setUserData] = useState({});
+    let [payeeSums, setPayeeSums] = useState([]);
 
     const getUserData = async (id) => {
         const response = await axios.get(`/users/${id}/data`);
         setUserData(response.data);
+        setPayeeSums(payeeInfo(response.data.transactions));
     };
-
     const { user, transactions, payees, categories, accounts } = userData;
 
     const postNewAccount = async (obj) => {
@@ -148,7 +149,6 @@ export const TableProvider = ({ children }) => {
         const account = userData.accounts.find(
             (account) => account.name == userInput.account_name
         );
-        console.log(account);
         if (account) {
             data.account_id = account.id;
         } else {
@@ -170,10 +170,36 @@ export const TableProvider = ({ children }) => {
         setUserData({ ...userData });
     };
 
+    const payeeInfo = (transactionsArr) => {
+        let obj = {};
+        let arr = [];
+        for (let i = 0; i < transactionsArr.length; i++) {
+            if (obj[transactionsArr[i].payee_name]) {
+                obj[transactionsArr[i].payee_name] +=
+                    transactionsArr[i].outflow;
+            } else {
+                obj[transactionsArr[i].payee_name] = transactionsArr[i].outflow;
+            }
+        }
+
+        // Object.keys(obj).map(index =>{
+        //     let payeeObject = {}
+        //     payeeObject.x = index
+        //     payeeObject.y = obj[index]
+        //     arr.push(payeeObject)
+        // })
+
+        for (let key in obj) {
+            arr.push({ x: key, y: obj[key] });
+        }
+        return arr;
+    };
+
     return (
         <TableContext.Provider
             value={{
                 addTransaction,
+                payeeSums,
                 updateTransaction,
                 userData,
                 getUserData,
