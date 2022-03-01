@@ -10,7 +10,7 @@ const corsConfig = {
     origin: '*',
 };
 
-app.use(cors(corsConfig));
+app.use(cors());
 
 app.use('/accounts', routes.accounts);
 app.use('/categories', routes.categories);
