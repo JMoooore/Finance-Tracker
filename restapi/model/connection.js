@@ -4,7 +4,7 @@ const environment = process.env.NODE_ENV;
 const connectionString = process.env.DATABASE_URL;
 const pfConfig = { connectionString };
 
-if (environment === 'prod') {
+if (environment === 'production') {
     pfConfig.ssl = { rejectUnauthorized: false };
 }
 
